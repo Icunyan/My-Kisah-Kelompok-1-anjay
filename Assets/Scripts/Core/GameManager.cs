@@ -123,7 +123,18 @@ namespace FantasyLifeVN.Core
         public int StoryLevel => storyLevel;
         public int LaraFriendship { get => laraFriendship; set => laraFriendship = Mathf.Clamp(value, 0, 100); }
         public int AffectionLucia { get => luciaAffection; set => luciaAffection = Mathf.Clamp(value, 0, 100); }
-        public string CurrentRoom { get => currentRoom; set => currentRoom = value; }
+        public string CurrentRoom
+        {
+            get => currentRoom;
+            set
+            {
+                if (currentRoom != value)
+                {
+                    currentRoom = value;
+                    NotifyStateChanged();
+                }
+            }
+        }
 
         public bool IsBossStage()
         {
@@ -186,21 +197,11 @@ namespace FantasyLifeVN.Core
         }
 
         /// <summary>
-        /// Visit Lara action: interacts to raise Friendship points (+2). Consumes 10 Energy.
+        /// Visit Lara action: transitions to Kamar Lara.
         /// </summary>
         public void VisitLara()
         {
-            if (currentEnergy >= 10)
-            {
-                currentEnergy -= 10;
-                laraFriendship += 2; // Basic interaction friendship increment
-
-                // Advances phase
-                if (timePhase == "Pagi") timePhase = "Siang";
-                else if (timePhase == "Siang") timePhase = "Malam";
-
-                NotifyStateChanged();
-            }
+            CurrentRoom = "Kamar Lara";
         }
 
         /// <summary>

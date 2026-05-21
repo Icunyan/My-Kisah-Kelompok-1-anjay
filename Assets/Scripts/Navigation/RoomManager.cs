@@ -80,7 +80,29 @@ namespace FantasyLifeVN.Navigation
             string timePhase = GameManager.Instance.TimePhase;
 
             // 1. Update Background Sprite
-            RoomConfig? currentConfig = rooms.Find(r => r.roomName.Equals(currentRoom, System.StringComparison.OrdinalIgnoreCase));
+            RoomConfig? currentConfig = null;
+            var found = rooms.Find(r => r.roomName.Equals(currentRoom, System.StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrEmpty(found.roomName))
+            {
+                currentConfig = found;
+            }
+            else
+            {
+                // Fallback mapping for Kamar Lara & Kamar Ren to Bedroom/LivingRoom configs
+                string fallbackName = "";
+                if (currentRoom.ToLower() == "kamar lara") fallbackName = "Bedroom";
+                else if (currentRoom.ToLower() == "kamar ren") fallbackName = "Bedroom";
+
+                if (!string.IsNullOrEmpty(fallbackName))
+                {
+                    var fallbackFound = rooms.Find(r => r.roomName.Equals(fallbackName, System.StringComparison.OrdinalIgnoreCase));
+                    if (!string.IsNullOrEmpty(fallbackFound.roomName))
+                    {
+                        currentConfig = fallbackFound;
+                    }
+                }
+            }
+
             if (currentConfig.HasValue && mainBackgroundRenderer != null)
             {
                 Sprite targetSprite = null;
@@ -103,8 +125,7 @@ namespace FantasyLifeVN.Navigation
                 }
             }
 
-            // 2. Position NPCs based on GIM.pdf Schedule
-            // Lara is permanently bedridden sick in her room until the Demon Lord is defeated
+            // 2. Position NPCs based on schedule
             UpdateNPCScheduling(currentRoom, timePhase, GameManager.Instance.StoryLevel, true);
         }
 
@@ -126,7 +147,7 @@ namespace FantasyLifeVN.Navigation
             // Lara is permanently sick in the Bedroom
             if (isSick)
             {
-                if (currentRoomLower == "bedroom")
+                if (currentRoomLower == "bedroom" || currentRoomLower == "kamar lara" || currentRoomLower == "kamar ren")
                 {
                     laraNPC.transform.position = bedroomPivot != null ? bedroomPivot.position : Vector3.zero;
                     laraNPC.SetActive(true);
@@ -134,7 +155,7 @@ namespace FantasyLifeVN.Navigation
             }
 
             // Lucia sitting near Lara's bed or planning
-            if (currentRoomLower == "bedroom" && (phase == "Pagi" || phase == "Malam"))
+            if ((currentRoomLower == "bedroom" || currentRoomLower == "kamar lara" || currentRoomLower == "kamar ren") && (phase == "Pagi" || phase == "Malam"))
             {
                 luciaNPC.transform.position = bedroomPivot != null ? bedroomPivot.position + new Vector3(1.5f, 0, 0) : Vector3.zero;
                 luciaNPC.SetActive(true);

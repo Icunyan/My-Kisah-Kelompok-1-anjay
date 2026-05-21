@@ -18,6 +18,7 @@ namespace FantasyLifeVN.Dialogue
         [SerializeField] private TextMeshProUGUI speakerNameText;
         [SerializeField] private TextMeshProUGUI dialogueBodyText;
         [SerializeField] private Image portraitImage;
+        [SerializeField] private Button btnNextDialogue;
 
         [Header("Choice Settings")]
         [SerializeField] private GameObject choiceButtonPrefab;
@@ -82,6 +83,11 @@ namespace FantasyLifeVN.Dialogue
             GameManager.OnDialogueTriggered += StartDailyDialogue;
             GameManager.OnStoryEventTriggered += StartStoryCampaign;
             GameManager.OnGameStateChanged += HandleGameStateChanged;
+
+            if (btnNextDialogue != null)
+            {
+                btnNextDialogue.onClick.AddListener(OnDialogueBoxClicked);
+            }
             
             // Play initial opening chapter automatically
             StartCoroutine(TriggerInitialOpening());
@@ -194,18 +200,39 @@ namespace FantasyLifeVN.Dialogue
                 }
                 else
                 {
-                    // Only show choice buttons during story campaign sections, not daily NPC dialogue
-                    if (isCampaignActive && currentSequence.choices.Count > 0 && choicesContainer != null && choicesContainer.childCount == 0)
+                    if (isCampaignActive && currentSequence.choices.Count > 0)
                     {
-                        DisplayChoices();
+                        // In campaign mode, auto-select the choice when clicking Next
+                        DialogueChoice firstChoice = currentSequence.choices[0];
+                        OnChoiceSelected(firstChoice);
                     }
                     else
                     {
-                        // Loop Lara's daily dialogue
+                        // Loop Lara's daily dialogue or room dialogue
                         if (!isCampaignActive && activeNPCId == "lara")
                         {
-                            currentLineIndex = 0;
-                            ShowNextLine();
+                            if (GameManager.Instance != null && GameManager.Instance.CurrentRoom.ToLower() == "kamar lara")
+                            {
+                                if (currentSequence.sequenceID == "kamar_lara_menu")
+                                {
+                                    // Keep menu line visible
+                                    currentLineIndex = 0;
+                                    ShowNextLine();
+                                }
+                                else
+                                {
+                                    // Loop to another random Lara dialogue
+                                    int randomIndex = UnityEngine.Random.Range(1, 6);
+                                    currentSequence = DialogueDatabase.GetRandomLaraDialogue(randomIndex);
+                                    currentLineIndex = 0;
+                                    ShowNextLine();
+                                }
+                            }
+                            else
+                            {
+                                currentLineIndex = 0;
+                                ShowNextLine();
+                            }
                         }
                         else
                         {
@@ -300,6 +327,51 @@ namespace FantasyLifeVN.Dialogue
         {
             if (GameManager.Instance == null) return;
 
+            // Custom Lara Room Choices Interruption
+            if (choice.targetNodeID == "lara_talk")
+            {
+                int randomIndex = UnityEngine.Random.Range(1, 6);
+                currentSequence = DialogueDatabase.GetRandomLaraDialogue(randomIndex);
+                currentLineIndex = 0;
+                ShowNextLine();
+                return;
+            }
+            else if (choice.targetNodeID == "lara_upgrade")
+            {
+                if (GameManager.Instance.CurrentEnergy >= 15)
+                {
+                    GameManager.Instance.ConsumeEnergy(15);
+                    GameManager.Instance.LaraFriendship += 5;
+                    // Boost party statistics as upgrade effect
+                    GameManager.Instance.renStats.TrainBoost(3, 2, 1, 1);
+                    GameManager.Instance.marcoStats.TrainBoost(5, 0, 1, 2);
+                    GameManager.Instance.luciaStats.TrainBoost(3, 4, 0, 1);
+
+                    DialogueSequence upgradeSeq = new DialogueSequence();
+                    upgradeSeq.sequenceID = "lara_upgrade_success";
+                    upgradeSeq.lines.Add(new DialogueLine { speakerName = "Lara", text = "Terima kasih, Ren! Kamar ini terasa jauh lebih nyaman dan aku merasa energi kita semua meningkat.", expression = "Pose1_Tutupmata_senyum" });
+                    currentSequence = upgradeSeq;
+                    currentLineIndex = 0;
+                    ShowNextLine();
+                }
+                else
+                {
+                    DialogueSequence noEnergySeq = new DialogueSequence();
+                    noEnergySeq.sequenceID = "lara_no_energy";
+                    noEnergySeq.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren, kamu terlihat lelah sekali... Istirahatlah dulu sebelum membantu meningkatkan skill.", expression = "Pose2_TutupMulut" });
+                    currentSequence = noEnergySeq;
+                    currentLineIndex = 0;
+                    ShowNextLine();
+                }
+                return;
+            }
+            else if (choice.targetNodeID == "lara_return")
+            {
+                GameManager.Instance.CurrentRoom = "Kamar Ren";
+                EndDialogue();
+                return;
+            }
+
             if (isCampaignActive)
             {
                 ClearChoices();
@@ -314,7 +386,7 @@ namespace FantasyLifeVN.Dialogue
                 else if (choice.targetNodeID == "trigger_dungeon_prep")
                 {
                     GameManager.Instance.AdvanceStoryLevel(); // Set story to Level 5
-                    GameManager.Instance.CurrentRoom = "Yard";
+                    GameManager.Instance.CurrentRoom = "Kamar Ren"; // Go to Kamar Ren!
                     EndDialogue();
                     return;
                 }
@@ -404,13 +476,29 @@ namespace FantasyLifeVN.Dialogue
 
         private void HandleGameStateChanged()
         {
-            // Close dialogue automatically if the player navigates to a new room or executes an action (energy, day, or phase changed)
-            if (dialoguePanel != null && dialoguePanel.activeSelf)
+            if (GameManager.Instance != null)
             {
-                if (GameManager.Instance != null)
+                string currentRoom = GameManager.Instance.CurrentRoom;
+
+                if (currentRoom != lastRoom)
                 {
-                    if (GameManager.Instance.CurrentRoom != lastRoom ||
-                        GameManager.Instance.CurrentEnergy != lastEnergy ||
+                    if (currentRoom.ToLower() == "kamar lara")
+                    {
+                        StartKamarLaraMenu();
+                        return;
+                    }
+                    else
+                    {
+                        if (dialoguePanel != null && dialoguePanel.activeSelf)
+                        {
+                            EndDialogue();
+                        }
+                    }
+                }
+
+                if (dialoguePanel != null && dialoguePanel.activeSelf)
+                {
+                    if (GameManager.Instance.CurrentEnergy != lastEnergy ||
                         GameManager.Instance.Day != lastDay ||
                         GameManager.Instance.TimePhase != lastPhase)
                     {
@@ -418,6 +506,29 @@ namespace FantasyLifeVN.Dialogue
                     }
                 }
             }
+        }
+
+        public void StartKamarLaraMenu()
+        {
+            isCampaignActive = false;
+            activeNPCId = "lara";
+            currentSequence = DialogueDatabase.GetKamarLaraMenu();
+
+            if (GameManager.Instance != null)
+            {
+                lastRoom = GameManager.Instance.CurrentRoom;
+                lastEnergy = GameManager.Instance.CurrentEnergy;
+                lastDay = GameManager.Instance.Day;
+                lastPhase = GameManager.Instance.TimePhase;
+            }
+
+            if (dialoguePanel != null) dialoguePanel.SetActive(true);
+            if (choicesContainer != null) choicesContainer.gameObject.SetActive(true);
+
+            currentLineIndex = 0;
+            ClearChoices();
+            ShowNextLine();
+            DisplayChoices();
         }
 
         private void ClearChoices()

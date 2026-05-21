@@ -207,5 +207,53 @@ namespace FantasyLifeVN.Dialogue
 
             return ds;
         }
+
+        public static DialogueSequence GetKamarLaraMenu()
+        {
+            DialogueSequence ds = new DialogueSequence();
+            ds.sequenceID = "kamar_lara_menu";
+            ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren! Ada apa? Apakah kamu butuh sesuatu?", expression = "Pose1_Senyum" });
+            ds.choices.Add(new DialogueChoice { choiceText = "Talk to Lara", targetNodeID = "lara_talk", affectionGain = 0, energyCost = 0, consequenceText = "" });
+            ds.choices.Add(new DialogueChoice { choiceText = "Upgrade Skills", targetNodeID = "lara_upgrade", affectionGain = 0, energyCost = 15, consequenceText = "" });
+            ds.choices.Add(new DialogueChoice { choiceText = "Kembali ke Kamar Ren", targetNodeID = "lara_return", affectionGain = 0, energyCost = 0, consequenceText = "" });
+            return ds;
+        }
+
+        public static DialogueSequence GetRandomLaraDialogue(int index)
+        {
+            DialogueSequence ds = new DialogueSequence();
+            ds.sequenceID = $"lara_random_{index}";
+
+            switch (index)
+            {
+                case 1:
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren! Apakah petualanganmu hari ini lancar? Aku mengkhawatirkanmu...", expression = "Pose1_tutupmulut" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Tapi melihatmu sehat-sehat saja, aku merasa lega.", expression = "Pose1_Senyum" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Jangan memaksakan dirimu terlalu keras ya.", expression = "Pose1_Tutupmata_senyum" });
+                    break;
+                case 2:
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Kamar ini terasa sepi sekali saat kamu pergi.", expression = "Pose2_TutupMulut" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Tapi aku tahu kamu sedang berjuang mencari obat untukku.", expression = "Pose1_Ngomong" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Aku akan selalu menunggumu di sini.", expression = "Pose1_Senyum" });
+                    break;
+                case 3:
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren, ingat tidak dulu waktu kita di panti asuhan?", expression = "Pose2_tutupmata_Ngomong" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Kamu sering sekali mencuri apel di kebun belakang.", expression = "Pose1_Tutupmata_grin" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Lalu aku dan Marco yang harus kena hukumannya... Hehe.", expression = "Pose2_tutupmata_senyum" });
+                    break;
+                case 4:
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Bagaimana keadaan Lucia? Dia sangat baik ya menyusulmu sampai ke sini.", expression = "Pose1_Ngomong" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Kuharap kalian berdua bisa akur saat berpetualang.", expression = "Pose1_Senyum" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Aku tidak sabar untuk bisa sembuh dan ikut bersama kalian lagi.", expression = "Pose2_Senyum" });
+                    break;
+                case 5:
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren... terima kasih ya sudah merawatku.", expression = "Pose1_tutupmulut" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Sentuhan tanganmu saat memulihkan manaku selalu terasa hangat.", expression = "Pose2_tutupmata_senyum" });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Aku berjanji akan bertahan sampai obatnya terkumpul.", expression = "Pose1_Senyum" });
+                    break;
+            }
+
+            return ds;
+        }
     }
 }
