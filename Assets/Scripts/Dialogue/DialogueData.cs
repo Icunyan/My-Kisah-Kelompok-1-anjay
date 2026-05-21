@@ -39,185 +39,32 @@ namespace FantasyLifeVN.Dialogue
         public static DialogueSequence GetDailyDialogue(string npcId, string phase, int affection, bool isSick)
         {
             DialogueSequence ds = new DialogueSequence();
-            ds.sequenceID = $"{npcId}_{phase}";
+            ds.sequenceID = npcId;
 
-            string npcName = npcId.ToLower() == "lara" ? "Lara" : (npcId.ToLower() == "lucia" ? "Lucia" : "Marco");
-            string affTier = affection < 30 ? "Rendah" : (affection < 70 ? "Sedang" : "Tinggi");
-
-            // LARAS SCHEDULING & SICK STATUS
+            // =====================================================================
+            // LARA - Edit teks dialog di sini
+            // =====================================================================
             if (npcId.ToLower() == "lara")
             {
-                if (isSick)
-                {
-                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "(Membuka matanya perlahan, bernapas lemah) R-Ren... Maaf aku merepotkanmu...", expression = "Lemah" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Tubuhku terasa sangat berat... tapi melihat wajah cemasmu... rasanya agak hangat...", expression = "Malu" });
-                    
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Genggam tangannya dengan lembut [⚡ -10]",
-                        targetNodeID = "lara_sick_hold",
-                        affectionGain = 15,
-                        energyCost = 10,
-                        consequenceText = "Kamu menggenggam jemari Lara yang dingin. Dia tersenyum tenang dan tertidur kembali."
-                    });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Selimuti dia dengan baik",
-                        targetNodeID = "lara_sick_blanket",
-                        affectionGain = 5,
-                        energyCost = 0,
-                        consequenceText = "Kamu merapikan selimut Lara agar dia merasa hangat."
-                    });
-                }
-                else
-                {
-                    // Normal Priestess Dialogues (Morning, Afternoon, Night)
-                    if (phase == "Pagi")
-                    {
-                        ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Pagi, Ren! Sarapan hangat sudah siap. Aku memasak bubur Morgendorf kesukaanmu.", expression = "Senang" });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Puji rasanya yang lezat [⚡ -10]",
-                            targetNodeID = "lara_pagi_praise",
-                            affectionGain = 12,
-                            energyCost = 10,
-                            consequenceText = "Kamu melahap bubur buatan Lara dan memujinya. Dia tersenyum sangat manis dengan pipi merona."
-                        });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Ucapkan terima kasih",
-                            targetNodeID = "lara_pagi_thanks",
-                            affectionGain = 3,
-                            energyCost = 0,
-                            consequenceText = "Kamu mengucapkan terima kasih. Lara mengangguk dengan riang."
-                        });
-                    }
-                    else if (phase == "Siang")
-                    {
-                        ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ren, jangan terlalu memaksakan diri di dungeon ya. Perlengkapan penyembuhku selalu siap menunggumu.", expression = "Normal" });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Minta dia merapalkan berkat doa [⚡ -10]",
-                            targetNodeID = "lara_siang_bless",
-                            affectionGain = 14,
-                            energyCost = 10,
-                            consequenceText = "Lara mendekat dan merapalkan doa berkat suci. Cahaya hangat mengelilingimu, membuatmu segar kembali!"
-                        });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Katakan padanya untuk berhati-hati juga",
-                            targetNodeID = "lara_siang_care",
-                            affectionGain = 4,
-                            energyCost = 0,
-                            consequenceText = "Lara tersenyum lembut mendengar perhatian darimu."
-                        });
-                    }
-                    else
-                    {
-                        ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Malam yang tenang... Rasanya nyaman sekali bisa mengobrol santai seperti ini bersamamu lagi, Ren.", expression = "Senang" });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Duduk rapat di sampingnya [⚡ -10]",
-                            targetNodeID = "lara_malam_close",
-                            affectionGain = 18,
-                            energyCost = 10,
-                            consequenceText = "Kamu duduk mendekat di sebelahnya. Lara menyandarkan kepalanya ke pundakmu dengan malu-malu."
-                        });
-                        ds.choices.Add(new DialogueChoice
-                        {
-                            choiceText = "Ingatkan dia untuk tidur tepat waktu",
-                            targetNodeID = "lara_malam_sleep",
-                            affectionGain = 2,
-                            energyCost = 0,
-                            consequenceText = "Kamu menyuruhnya beristirahat. Dia mengangguk dan pergi tidur."
-                        });
-                    }
-                }
+                ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Ah! Ren! Kamu butuh apa hari ini?", expression = "Senang" });
+                ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Hmmm? ah! Maaf ya, Dzaky masih bingung cara nambah dialog! ♥", expression = "Malu" });
+                ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Benar kak, cuman segini aja dulu", expression = "Senang" });
             }
-            // LUCIA MAGE - ACADEMY COMPANION & JEALOUS LOVE INTEREST
+            // =====================================================================
+            // LUCIA - Edit teks dialog di sini
+            // =====================================================================
             else if (npcId.ToLower() == "lucia")
             {
-                if (phase == "Pagi")
-                {
-                    ds.lines.Add(new DialogueLine { speakerName = "Lucia", text = "Hmph, Ren! Kenapa pagi-pagi sekali sudah berkeliaran? Jangan-jangan kau mau menyelinap menemui Priestess itu?!", expression = "Tsundere" });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Katakan kau ingin melihat senyum Lucia pagi ini [⚡ -10]",
-                        targetNodeID = "lucia_pagi_tease",
-                        affectionGain = 16,
-                        energyCost = 10,
-                        consequenceText = "Lucia langsung terbelalak, wajahnya merah padam! 'B-bicara apa sih?! Dasar bodoh!!'"
-                    });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Tanyakan rencananya hari ini",
-                        targetNodeID = "lucia_pagi_ask",
-                        affectionGain = 4,
-                        energyCost = 0,
-                        consequenceText = "Lucia memalingkan wajahnya dan menjelaskan rencana penelitian sihirnya."
-                    });
-                }
-                else if (phase == "Siang")
-                {
-                    ds.lines.Add(new DialogueLine { speakerName = "Lucia", text = "Dungeon di Benua Iblis ini dipenuhi residu sihir gelap. Perhatikan setiap langkahmu, Ren! Ingat, kau itu penyihir akademi kita!", expression = "Serius" });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Puji kecerdasan analisis Lucia [⚡ -10]",
-                        targetNodeID = "lucia_siang_praise",
-                        affectionGain = 15,
-                        energyCost = 10,
-                        consequenceText = "Kamu memuji wawasan Lucia yang sangat luas. Dia mencibir bangga dengan senyuman tersipu."
-                    });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Tunjukkan persiapan sihir anginmu",
-                        targetNodeID = "lucia_siang_wind",
-                        affectionGain = 4,
-                        energyCost = 0,
-                        consequenceText = "Lucia mengoreksi beberapa gerakan manamu dengan teliti."
-                    });
-                }
-                else
-                {
-                    ds.lines.Add(new DialogueLine { speakerName = "Lucia", text = "Malam di luar dingin sekali... T-tapi jangan berpikir aku menyuruhmu duduk di dekatku hanya karena aku kesepian ya!", expression = "Malu" });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Buatkan cokelat hangat untuknya [⚡ -10]",
-                        targetNodeID = "lucia_malam_chocolate",
-                        affectionGain = 20,
-                        energyCost = 10,
-                        consequenceText = "Kamu memberikan segelas minuman cokelat hangat. Lucia meminumnya pelan dan menatapmu dengan pandangan penuh kasih."
-                    });
-                    ds.choices.Add(new DialogueChoice
-                    {
-                        choiceText = "Ucapkan selamat malam biasa",
-                        targetNodeID = "lucia_malam_normal",
-                        affectionGain = 3,
-                        energyCost = 0,
-                        consequenceText = "Kamu berpamitan. Lucia mendengus sebal namun tetap melambaikan tangan."
-                    });
-                }
+                ds.lines.Add(new DialogueLine { speakerName = "Lucia", text = "Hmph, ada perlu apa datang-datang ke sini?", expression = "Tsundere" });
+                ds.lines.Add(new DialogueLine { speakerName = "Lucia", text = "...Yah, kalau kau sudah di sini, duduklah sebentar.", expression = "Malu" });
             }
-            // MARCO - HEARTY KNIGHT SUPPORTING CHARACTER
+            // =====================================================================
+            // MARCO - Edit teks dialog di sini
+            // =====================================================================
             else
             {
-                ds.lines.Add(new DialogueLine { speakerName = "Marco", text = "Hahaha! Senang melihatmu segar bugar kawan! Zirahku siap menahan serangan monster apa pun untukmu!", expression = "Senang" });
-                ds.choices.Add(new DialogueChoice
-                {
-                    choiceText = "Ajak latihan tanding fisik bersama [⚡ -10]",
-                    targetNodeID = "marco_spar",
-                    affectionGain = 10, // Friendship points
-                    energyCost = 10,
-                    consequenceText = "Kalian melakukan latihan fisik seru. Otot Marco benar-benar tangguh bagaikan benteng berjalan!"
-                });
-                ds.choices.Add(new DialogueChoice
-                {
-                    choiceText = "Diskusikan garis pertahanan",
-                    targetNodeID = "marco_defense",
-                    affectionGain = 5,
-                    energyCost = 0,
-                    consequenceText = "Marco menjelaskan taktik perisai besarnya untuk melindungimu saat merapalkan mantra."
-                });
+                ds.lines.Add(new DialogueLine { speakerName = "Marco", text = "Hahaha! Ren! Siap untuk petualangan hari ini, kawan?", expression = "Senang" });
+                ds.lines.Add(new DialogueLine { speakerName = "Marco", text = "Percayakan perlindungan pada Marco si benteng berjalan!", expression = "Senang" });
             }
 
             return ds;
@@ -234,20 +81,8 @@ namespace FantasyLifeVN.Dialogue
             switch (sectionNumber)
             {
                 case 1:
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi 1", text = "Dahulu kala disebuah desa di ujung dunia, Ada tiga anak di panti asuhan yang bersahabat, bermimpi suatu hari menjadi petualang, menjelajahi dunia yang luas.", expression = "Normal" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi 1", text = "Selang berlalu Ren salah satu anak, mendapat undangan dari salah satu pedepokan sihir ternama untuk menjadi master sihir.", expression = "Normal" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi 1", text = "Dengan berat hati, diapun harus meninggalkan kedua teman nya Lara dan Marco. Walaupun begitu mereka berjanji ketika mereka bersama kembali, mereka akan memulai petualangan hebat dan menjelajahi dunia.", expression = "Normal" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi 1", text = "Waktu terus berjalan, berita buruk sampai ke akademi, desa Morgendorf tempat asal Ren diserang oleh pasukan raja iblis, desanya hancur dan korban banyak berjatuhan. Ini menggentarkan hati Ren untuk pulang kembali. Membantu kampung halaman nya.", expression = "Cemas" });
-                    
-                    ds.lines.Add(new DialogueLine { speakerName = "Ren", text = "5 tahun setelah aku meninggalkan desa, aku tidak pernah mengira bahwa ambisiku menjadi master sihir justru membuatku terlambat melindungi mereka.", expression = "Serius" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Ren", text = "Morgendorf... panti asuhan kami... Apakah Lara dan Marco baik-baik saja? Aku tidak boleh membuang waktu lagi.", expression = "Cemas" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Ren", text = "Jika takdir ingin merebut rumahku, maka aku akan merebutnya kembali dengan tanganku sendiri!", expression = "Serius" });
-                    
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi", text = "*Setiba nya di desa: Aroma hangus dan kepulan asap hitam menyambut Ren di Morgendorf.", expression = "Cemas" });
-                    ds.lines.Add(new DialogueLine { speakerName = "Narasi", text = "Desa yang dulunya damai kini hancur total oleh sisa-sisa sihir hitam pasukan Raja Iblis. Mengabaikan rasa lelahnya, Ren berlari sekencang mungkin menembus puing-puing menuju panti asuhan tempat Lara dan Marco berada.", expression = "Cemas" });
-                    
-                    // Immediate trigger transition to Section 2 inside dialogue sequence
-                    ds.choices.Add(new DialogueChoice { choiceText = "Cari mereka di panti asuhan", targetNodeID = "trigger_section_2", affectionGain = 0, energyCost = 0, consequenceText = "Ren masuk ke panti asuhan dengan tergesa-gesa." });
+                    ds.lines.Add(new DialogueLine { speakerName = "Lara", text = "Wah!", expression = "Terkejut" });
+                    ds.choices.Add(new DialogueChoice { choiceText = "Lanjutkan", targetNodeID = "trigger_section_2", affectionGain = 0, energyCost = 0, consequenceText = "" });
                     break;
 
                 case 2:

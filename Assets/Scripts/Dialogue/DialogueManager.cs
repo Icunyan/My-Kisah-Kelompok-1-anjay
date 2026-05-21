@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using FantasyLifeVN.Core;
@@ -14,8 +15,8 @@ namespace FantasyLifeVN.Dialogue
 
         [Header("UI Components")]
         [SerializeField] private GameObject dialoguePanel;
-        [SerializeField] private Text speakerNameText;
-        [SerializeField] private Text dialogueBodyText;
+        [SerializeField] private TextMeshProUGUI speakerNameText;
+        [SerializeField] private TextMeshProUGUI dialogueBodyText;
         [SerializeField] private Image portraitImage;
 
         [Header("Choice Settings")]
@@ -26,13 +27,23 @@ namespace FantasyLifeVN.Dialogue
         [SerializeField] private float typingSpeed = 0.02f;
 
         [Header("Expression Portraits")]
+        [SerializeField] private List<NPCPortraitSet> npcPortraitSets = new List<NPCPortraitSet>();
+        // Keeping the old list for backward compatibility (campaign mode)
         [SerializeField] private List<NPCExpressionMap> npcPortraits = new List<NPCExpressionMap>();
+
+        [System.Serializable]
+        public class NPCPortraitSet
+        {
+            public string npcId;          // lara, lucia, marco
+            public Sprite defaultSprite;  // Gambar diam / idle (muncul saat dialog selesai)
+            public Sprite talkingSprite;  // Gambar ngomong (muncul saat dialog berjalan)
+        }
 
         [System.Serializable]
         public struct NPCExpressionMap
         {
-            public string npcId; // lara, lucia, marco
-            public string expression; // Normal, Senang, Tsundere, Malu, Serius, Cemas, Lemah, Terkejut
+            public string npcId;
+            public string expression;
             public Sprite sprite;
         }
 
@@ -43,6 +54,13 @@ namespace FantasyLifeVN.Dialogue
         private string activeNPCId;
         private bool isCampaignActive = false;
         private int activeCampaignSection = 1;
+
+        // State tracking to close dialogue on external actions (room change, train, rest, etc.)
+        private string lastRoom = "";
+        private int lastEnergy = -1;
+        private int lastDay = -1;
+        private string lastPhase = "";
+        private bool isClosing = false;
 
         private void Awake()
         {
@@ -63,6 +81,7 @@ namespace FantasyLifeVN.Dialogue
             // Subscribe to triggers
             GameManager.OnDialogueTriggered += StartDailyDialogue;
             GameManager.OnStoryEventTriggered += StartStoryCampaign;
+            GameManager.OnGameStateChanged += HandleGameStateChanged;
             
             // Play initial opening chapter automatically
             StartCoroutine(TriggerInitialOpening());
@@ -72,6 +91,7 @@ namespace FantasyLifeVN.Dialogue
         {
             GameManager.OnDialogueTriggered -= StartDailyDialogue;
             GameManager.OnStoryEventTriggered -= StartStoryCampaign;
+            GameManager.OnGameStateChanged -= HandleGameStateChanged;
         }
 
         private IEnumerator TriggerInitialOpening()
@@ -97,6 +117,14 @@ namespace FantasyLifeVN.Dialogue
             {
                 Debug.LogWarning($"Story Campaign Section {sectionNumber} not found.");
                 return;
+            }
+
+            if (GameManager.Instance != null)
+            {
+                lastRoom = GameManager.Instance.CurrentRoom;
+                lastEnergy = GameManager.Instance.CurrentEnergy;
+                lastDay = GameManager.Instance.Day;
+                lastPhase = GameManager.Instance.TimePhase;
             }
 
             if (dialoguePanel != null) dialoguePanel.SetActive(true);
@@ -132,7 +160,17 @@ namespace FantasyLifeVN.Dialogue
                 return;
             }
 
+            // Save state to detect external changes
+            lastRoom = GameManager.Instance.CurrentRoom;
+            lastEnergy = GameManager.Instance.CurrentEnergy;
+            lastDay = GameManager.Instance.Day;
+            lastPhase = GameManager.Instance.TimePhase;
+
             if (dialoguePanel != null) dialoguePanel.SetActive(true);
+
+            // Hide choices container - daily dialogue has no choices, click-through only
+            if (choicesContainer != null) choicesContainer.gameObject.SetActive(false);
+
             currentLineIndex = 0;
             ClearChoices();
             ShowNextLine();
@@ -142,6 +180,7 @@ namespace FantasyLifeVN.Dialogue
         {
             if (isTyping)
             {
+                // Skip typewriter animation: immediately show full text
                 StopCoroutine(typingCoroutine);
                 dialogueBodyText.text = currentSequence.lines[currentLineIndex].text;
                 isTyping = false;
@@ -155,13 +194,23 @@ namespace FantasyLifeVN.Dialogue
                 }
                 else
                 {
-                    if (currentSequence.choices.Count > 0 && choicesContainer.childCount == 0)
+                    // Only show choice buttons during story campaign sections, not daily NPC dialogue
+                    if (isCampaignActive && currentSequence.choices.Count > 0 && choicesContainer != null && choicesContainer.childCount == 0)
                     {
                         DisplayChoices();
                     }
-                    else if (currentSequence.choices.Count == 0)
+                    else
                     {
-                        EndDialogue();
+                        // Loop Lara's daily dialogue
+                        if (!isCampaignActive && activeNPCId == "lara")
+                        {
+                            currentLineIndex = 0;
+                            ShowNextLine();
+                        }
+                        else
+                        {
+                            EndDialogue();
+                        }
                     }
                 }
             }
@@ -171,19 +220,26 @@ namespace FantasyLifeVN.Dialogue
         {
             DialogueLine currentLine = currentSequence.lines[currentLineIndex];
             speakerNameText.text = currentLine.speakerName;
-            
-            Sprite expressionSprite = GetPortrait(isCampaignActive ? currentLine.speakerName : activeNPCId, currentLine.expression);
+
             if (portraitImage != null)
             {
+                // Coba cari sprite berdasarkan ekspresi spesifik (NPC Portraits list)
+                Sprite expressionSprite = GetPortrait(isCampaignActive ? currentLine.speakerName : activeNPCId, currentLine.expression);
+
                 if (expressionSprite != null)
                 {
+                    // Gunakan sprite ekspresi spesifik jika ditemukan
                     portraitImage.sprite = expressionSprite;
-                    portraitImage.gameObject.SetActive(true);
                 }
                 else
                 {
-                    portraitImage.gameObject.SetActive(false);
+                    // Fallback: gunakan Talking Sprite dari NPC Portrait Set
+                    Sprite talkingSprite = GetTalkingPortrait(isCampaignActive ? currentLine.speakerName : activeNPCId);
+                    if (talkingSprite != null)
+                        portraitImage.sprite = talkingSprite;
                 }
+                // Selalu tampilkan portrait selama dialog berlangsung
+                portraitImage.gameObject.SetActive(true);
             }
 
             if (typingCoroutine != null) StopCoroutine(typingCoroutine);
@@ -209,7 +265,13 @@ namespace FantasyLifeVN.Dialogue
             foreach (DialogueChoice choice in currentSequence.choices)
             {
                 GameObject choiceBtnObj = Instantiate(choiceButtonPrefab, choicesContainer);
-                Text btnText = choiceBtnObj.GetComponentInChildren<Text>();
+                TextMeshProUGUI btnText = choiceBtnObj.GetComponentInChildren<TextMeshProUGUI>();
+                if (btnText == null)
+                {
+                    // Fallback to legacy Text if TMP not found on prefab
+                    Text legacyText = choiceBtnObj.GetComponentInChildren<Text>();
+                    if (legacyText != null) legacyText.text = choice.choiceText;
+                }
                 Button btn = choiceBtnObj.GetComponent<Button>();
 
                 if (choice.energyCost > 0)
@@ -305,10 +367,57 @@ namespace FantasyLifeVN.Dialogue
 
         private void EndDialogue()
         {
+            if (isClosing) return;
+            isClosing = true;
+
             if (dialoguePanel != null) dialoguePanel.SetActive(false);
             ClearChoices();
-            GameManager.Instance.NotifyStateChanged();
+
+            // Kembalikan gambar Lara/karakter ke pose diam (default) setelah dialog selesai
+            if (portraitImage != null)
+            {
+                Sprite defaultSprite = GetDefaultPortrait(activeNPCId);
+                if (defaultSprite != null)
+                {
+                    portraitImage.sprite = defaultSprite;
+                    portraitImage.gameObject.SetActive(true);
+                }
+                else
+                {
+                    portraitImage.gameObject.SetActive(false);
+                }
+            }
+
+            if (GameManager.Instance != null)
+            {
+                // Sync state so we don't double-trigger
+                lastRoom = GameManager.Instance.CurrentRoom;
+                lastEnergy = GameManager.Instance.CurrentEnergy;
+                lastDay = GameManager.Instance.Day;
+                lastPhase = GameManager.Instance.TimePhase;
+
+                GameManager.Instance.NotifyStateChanged();
+            }
             Debug.Log("Dialogue Ended.");
+            isClosing = false;
+        }
+
+        private void HandleGameStateChanged()
+        {
+            // Close dialogue automatically if the player navigates to a new room or executes an action (energy, day, or phase changed)
+            if (dialoguePanel != null && dialoguePanel.activeSelf)
+            {
+                if (GameManager.Instance != null)
+                {
+                    if (GameManager.Instance.CurrentRoom != lastRoom ||
+                        GameManager.Instance.CurrentEnergy != lastEnergy ||
+                        GameManager.Instance.Day != lastDay ||
+                        GameManager.Instance.TimePhase != lastPhase)
+                    {
+                        EndDialogue();
+                    }
+                }
+            }
         }
 
         private void ClearChoices()
@@ -332,6 +441,20 @@ namespace FantasyLifeVN.Dialogue
                 p.npcId.Equals(speakerKey, System.StringComparison.OrdinalIgnoreCase) && 
                 p.expression.Equals(expression, System.StringComparison.OrdinalIgnoreCase));
             return map.sprite;
+        }
+
+        private Sprite GetTalkingPortrait(string npcId)
+        {
+            string key = npcId.ToLower();
+            NPCPortraitSet set = npcPortraitSets.Find(p => p.npcId.Equals(key, System.StringComparison.OrdinalIgnoreCase));
+            return set?.talkingSprite;
+        }
+
+        private Sprite GetDefaultPortrait(string npcId)
+        {
+            string key = npcId.ToLower();
+            NPCPortraitSet set = npcPortraitSets.Find(p => p.npcId.Equals(key, System.StringComparison.OrdinalIgnoreCase));
+            return set?.defaultSprite;
         }
     }
 }
