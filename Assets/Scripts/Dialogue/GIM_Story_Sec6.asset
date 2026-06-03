@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec6
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Ren
+    speakerID: REN
+    text: Bagaimana, Lucia? Apa dia baik-baik saja?
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: Ini buruk, Ren. Dia pingsan bukan hanya karena kelelahan, tapi karena tubuhnya
+      terkena kutukan dari sihir para iblis.
+  - speakerName: Marco
+    speakerID: MARCO
+    text: Kutukan?! Bagaimana bisa?
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: Karena dia terlalu banyak mengobati warga desa yang terluka akibat senjata
+      atau sihir monster. Tanpa disadari, residu mana iblis dari luka-luka warga
+      itu masuk dan mengontaminasi sirkulasi sihirnya sendiri saat dia merapalkan
+      mantra penyembuh. Kutukan ini perlahan menggerogoti sirkuit mananya.
+  - speakerName: Ren
+    speakerID: REN
+    text: Lalu apa ada obatnya? Sihir pemurnian mu tidak bisa menghapusnya?
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: Sihirku hanya bisa menahan penyebarannya untuk sementara waktu. Untuk menyembuhkannya
+      secara total, kita butuh obat khusus. Dan sayangnya, satu-satunya bahan utama
+      untuk obat itu hanya tumbuh di tempat asalnya Demon Continent.
+  - speakerName: Marco
+    speakerID: MARCO
+    text: Benua Iblis... wilayah paling berbahaya yang dikuasai penuh oleh pasukan
+      Raja Iblis.
+  - speakerName: Ren
+    speakerID: REN
+    text: Kalau begitu aku tau apa yang harus ku lakukan. Aku akan pergi ke Benua
+      Iblis sekarang juga, sendirian! Aku yang akan bawa obat itu kembali!
+  - speakerName: Marco
+    speakerID: MARCO
+    text: Hei, tunggu dulu! Jangan main-main, Ren! Kau tidak bisa pergi sendirian
+      ke tempat menyeramkan seperti itu. Ajak aku dan kita bisa melawan mereka bersama!
+  - speakerName: Ren
+    speakerID: REN
+    text: Marco, ini bukan perjalanan biasa. Ini Benua Iblis! Tempat itu sangat berbahaya,
+      nyawamu bisa terancam!
+  - speakerName: Marco
+    speakerID: MARCO
+    text: Aku tidak masalah dengan hal itu, Ren. Lagipula, menghadapi bahaya dan
+      melindungi orang lain adalah tujuan utamaku menjadi seorang Ksatria. Aku tidak
+      akan membiarkan sahabatku pergi sendirian ke sarang musuh.
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: Dan jangan lupakan aku! Aku juga harus ikut!
+  - speakerName: Ren
+    speakerID: REN
+    text: "T-tapi\u2026 Lucia\u2026"
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: Tidak ada tapi-tapi! Aku tidak akan pernah membiarkan sahabatku di akademi
+      pergi ke tempat berbahaya seperti itu sendirian untuk mati konyol. Lagipula,
+      kalian berdua butuh penyihir jenius sepertiku untuk mendeteksi sihir iblis
+      di sana, kan?
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

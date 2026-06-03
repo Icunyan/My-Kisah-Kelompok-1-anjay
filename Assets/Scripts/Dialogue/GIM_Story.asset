@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: Dahulu kala disebuah desa di ujung dunia, Ada tiga anak di panti asuhan
+      yang bersahabat, bermimpi suatu hari menjadi petualang, menjelajahi dunia yang
+      luas. Selang berlalu Ren salah satu anak, mendapat undangan dari salah satu
+      pedepokan sihir ternama untuk menjadi master sihir. Dengan berat hati, diapun
+      harus meninggalkan kedua teman nya Lara dan Marco. Walaupun begitu mereka berjanji
+      ketika mereka bersama kembali, mereka akan memulai petualangan hebat dan menjelajahi
+      dunia
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: Waktu terus berjalan, berita buruk sampai ke akademi, desa Morgendorf tempat
+      asal Ren diserang oleh pasukan raja iblis, desanya hancur dan korban banyak
+      berjatuhan. Ini menggentarkan hati Ren untuk pulang kembali. Membantu kampung
+      halaman nya.
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

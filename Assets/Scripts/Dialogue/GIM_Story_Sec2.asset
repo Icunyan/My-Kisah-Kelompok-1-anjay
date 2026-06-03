@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec2
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Ren
+    speakerID: REN
+    text: (Terengah-engah, menatap ngeri sekeliling) Tidak... ini tidak mungkin!
+      (Berlari menerobos runtuhan panti asuhan) Lara! Marco! Kumohon jawab aku...
+      Di mana kalian?!
+  - speakerName: Ren
+    speakerID: REN
+    text: (Saat berlari, Ren tidak sengaja menabrak seorang Knight) Aduh... Maaf,
+      aku tidak melihat tunggu. Marco?! Kau... tinggi sekali sekarang
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Terkejut, lalu tertawa lebar hingga suaranya menggelegar) Ren?! Astaga,
+      si penyihir kecil kita akhirnya pulang! (Menepuk pundak Ren kencang) Baguslah
+      kau selamat. Sapaannya nanti saja, bantu aku bawa kotak-kotak pasokan medis
+      ini. Panti asuhan kita sekarang jadi tempat evakuasi warga!
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: Ren Langsung menggunakan sihir angin untuk meringankan beban kotak obat
+  - speakerName: Ren
+    speakerID: REN
+    text: Oke, serahkan padaku! Ayo cepat!
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: Ren dan Marco bergegas mendorong pintu aula panti asuhan yang berat. Di
+      dalam, suasana tampak penuh sesak oleh warga yang terluka. Di tengah kerumunan
+      itu, tampak Lara terduduk lemas di sebuah kursi kayu, wajahnya pucat dan nafasnya
+      terengah-engah akibat terlalu banyak menguras energi sihir untuk menyembuhkan
+      warga.
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

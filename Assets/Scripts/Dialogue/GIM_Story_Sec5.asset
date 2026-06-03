@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec5
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Ren
+    speakerID: REN
+    text: (Terkejut, langsung menahan tubuh Lara sebelum membentur lantai) Lara?!
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Seketika panik, ikut berlutut di samping mereka) Ada apa dengannya?! Lara!
+      Sial, dia pasti benar-benar kehabisan energi sihirnya karena memaksakan diri
+      sejak tadi!
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: (Tiba-tiba, pintu aula panti asuhan terbuka lebar. Derap langkah kaki yang
+      tergesa-gesa terdengar mendekat, disusul oleh sebuah suara yang sangat familier
+      bagi Ren.)
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: '"Ren! Akhirnya aku menemukanmu! Kenapa kau hobi sekali pergi duluan tanpa
+      menunggu, sih?!"'
+  - speakerName: Ren
+    speakerID: REN
+    text: (Menoleh kaget) Lu... Lucia?! Kenapa kau bisa ada di sini? Kau menyusulku
+      dari akademi?
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: (Napasnya terengah-engah, dengan jubah penyihir akademinya yang sedikit
+      kotor) Tentu saja! Berita serangan pasukan iblis ini sudah menyebar luas, aku
+      tidak mungkin membiarkanmu menghadapi ini sendirian!
+  - speakerName: Ren
+    speakerID: REN
+    text: (Wajahnya berubah penuh harap) Lucia, kamu datang di waktu yang tepat!
+      Kau jauh lebih jago sihir penyembuhan tingkat tinggi daripadaku. Periksa keadaan
+      Lara!
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: (Seketika terdiam, matanya menatap gadis rambut panjang yang sedang didekap
+      Ren) ...Tunggu. Jadi, dia ini... Lara? Teman masa kecil yang selalu, selalu
+      kau ceritakan di akademi itu?
+  - speakerName: Ren
+    speakerID: REN
+    text: (Panik) Iya! Kumohon, Lucia, nanti saja tanyanya. Dia pingsan karena kehabisan
+      mana!
+  - speakerName: Lucia
+    speakerID: LUCIA
+    text: (Menghela napas panjang, mengerucutkan bibirnya sedikit dengan tatapan
+      yang agak cemburu) Huh... jadi ini orangnya. Baiklah, baiklah! Minggir sedikit,
+      biar kuperiksa. Jauh-jauh aku menyusulmu ke sini, malah langsung disuruh mengobati
+      saingan... maksudku, temanmu! (Langsung merapalkan mantra sihir penyembuh tingkat
+      tinggi, sementara tangannya mulai memancarkan cahaya hijau yang menenangkan).
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: Cahaya hijau dari sihir penyembuhan Lucia perlahan meredup, raut wajahnya
+      berubah menjadi semakin serius setelah memeriksa aliran mana di tubuh Lara.
+      Ren dan Marco menunggu dengan cemas
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

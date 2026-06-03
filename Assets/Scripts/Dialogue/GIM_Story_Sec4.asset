@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec4
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Menyandarkan perisai besarnya ke dinding, lalu menghela napas lega) Akhirnya...
+      Kerja bagus, Ren. Sihir akademi memang beda, warga bisa tenang sekarang.
+  - speakerName: Ren
+    speakerID: REN
+    text: (Tersenyum, menatap cangkirnya) Ini belum seberapa dibanding apa yang kalian
+      lakukan di sini selama aku pergi. Terutama kau, Marco... (melihat zirah dan
+      tubuh kekar Marco). Sial, waktu aku berangkat dulu, kau itu kurus kering. Sekarang
+      badanmu sudah seperti benteng berjalan. Gagah sekali, kawan.
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Tertawa terbahak-bahak sambil menepuk dadanya yang berbaju besi) Hahaha!
+      Seorang Knight harus bisa jadi tameng, Ren! Tapi bicara soal perubahan... (menyenggol
+      lengan Lara) lihat si penyihir kita ini, Lara.
+  - speakerName: Lara
+    speakerID: LARA
+    text: (Tertawa kecil, menopang dagunya sambil menatap Ren dengan pandangan mengejek
+      namun hangat) Benar juga. Padahal dulu waktu di panti asuhan, Ren ini yang
+      paling pendek di antara kita bertiga. Selalu protes kalau disuruh mengambil
+      barang di rak atas. Tapi sekarang? Kenapa kau bisa lebih tinggi dari aku, huh?
+      Curang sekali.
+  - speakerName: Ren
+    speakerID: REN
+    text: (Tertawa kecil sambil menggaruk tengkuknya yang tidak gatal) Hei, pertumbuhan
+      di akademi itu nyata, Lara! Lagipula, tidak mungkin kan seorang master sihir
+      tingginya segini-gini saja?
+  - speakerName: Lara
+    speakerID: LARA
+    text: (Tersenyum lembut, tatapannya beralih menatap langit-langit aula) Tapi
+      melihat kita bertiga duduk seperti ini... rasanya seperti Dejavu. Mengingatkan
+      aku pada malam-malam di mana kita sering berbisik di tempat tidur, bermimpi
+      tentang dunia luar.
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Sorot matanya melembut, mengangguk setuju) Benar. Kita dulu selalu berteriak,
+      "Suatu hari nanti, kita akan jadi petualang hebat dan menjelajahi ujung dunia!"
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: 'Malam semakin larut, namun kehangatan obrolan mereka bertiga seolah menepis
+      hawa dingin di aula panti asuhan. Mereka terus bercerita, tertawa, dan mengenang
+      banyak hal yang telah mereka lalui terpisah selama lima tahun ini. Namun, sadar
+      bahwa tugas belum selesai, ketiganya pun berdiri dan bersiap kembali untuk
+      lanjut membantu warga desa yang membutuhkan.
+
+
+      Namun baru beberapa langkah
+      berjalan, tubuh Lara tiba-tiba lemas. Pandangannya mengabur, dan sedetik kemudian,
+      ia jatuh pingsan ke lantai.'
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

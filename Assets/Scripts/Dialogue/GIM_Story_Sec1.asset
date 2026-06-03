@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec1
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Ren
+    speakerID: REN
+    text: 5 tahun setelah aku meninggalkan desa, aku tidak pernah mengira bahwa ambisiku
+      menjadi master sihir justru membuatku terlambat melindungi mereka. Morgendorf...
+      panti asuhan kami... Apakah Lara dan Marco baik-baik saja? Aku tidak boleh
+      membuang waktu lagi. Jika takdir ingin merebut rumahku, maka aku akan merebutnya
+      kembali dengan tanganku sendiri!
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: '*Setiba nya di desa
+
+
+      Aroma hangus dan kepulan asap hitam menyambut
+      Ren di Morgendorf. Desa yang dulunya damai kini hancur total oleh sisa-sisa
+      sihir hitam pasukan Raja Iblis. Mengabaikan rasa lelahnya, Ren berlari sekencang
+      mungkin menembus puing-puing menuju panti asuhan tempat Lara dan Marco berada'
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}

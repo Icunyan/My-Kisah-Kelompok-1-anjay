@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: GIM_Story_Sec3
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Marco
+    speakerID: MARCO
+    text: (Berjalan cepat mendekat dengan raut cemas) Lara! Kau memaksakan dirimu
+      lagi? Istirahatlah dulu, pasokan medisnya sudah datang.
+  - speakerName: Lara
+    speakerID: LARA
+    text: "(Menoleh lemah, menyeka keringat dingin di dahinya) Aku tidak apa-apa,
+      Marco... warga masih banyak yang\u2014 (Matanya tiba-tiba tertuju pada sosok
+      di belakang Marco, seketika perban di tangannya terjatuh) ...Ren? Ini... benar-benar
+      kau?"
+  - speakerName: Ren
+    speakerID: REN
+    text: (Berjalan mendekat dengan senyum lega sekaligus prihatin, lalu berlutut
+      di depan kursi Lara) Lara Maaf aku terlambat. Jangan paksakan sihirmu lagi,
+      biar aku yang bantu sisa warga di sini.
+  - speakerName: Narasi
+    speakerID: NARASI
+    text: 'Berikut adalah kelanjutan cerita untuk Section 4, di mana mereka bergotong
+      royong membantu warga, lalu beristirahat sambil bernostalgia tentang masa lalu
+      dan janji mereka:
+
+
+      Ren segera merapalkan sihir pemulihan dari akademinya
+      untuk mengobati luka warga yang tersisa, sementara Marco dengan tubuh besarnya
+      cekatan memindahkan puing-puing dan menata tempat istirahat yang layak. Setelah
+      semua warga tertangani dan kondisi panti asuhan mulai kondusif, ketiganya akhirnya
+      bisa duduk bersama di sudut ruangan yang tenang.'
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}
