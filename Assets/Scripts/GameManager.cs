@@ -52,12 +52,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text cycleValText;           // Teks fase siklus
     [SerializeField] private Image cycleCardBg;               // Background kartu waktu (untuk warna dinamis)
     
+    [Header("Save/Load UI")]
+    [SerializeField] private SaveLoadUI saveLoadUI;       // Reference ke SaveLoadUI script
+    [SerializeField] private Button saveButton;            // Tombol Save di HUD
+    [SerializeField] private Button loadButton;            // Tombol Load di HUD
+    [SerializeField] private Button mainMenuButton;        // Tombol kembali ke Main Menu
+
     [Header("Bad Ending Settings")]
     [SerializeField] private GameObject badEndingPanel;
     [SerializeField] private DialogueData badEndingDialogue;
     [SerializeField] private DialogueData dayLimitDialogue;
     public bool isBadEnding { get; private set; } = false;
     private int daysSinceLastLaraVisit = 0;
+
+    // --- Accessor methods untuk SaveLoadManager ---
+    public int GetDaysSinceLastLaraVisit() => daysSinceLastLaraVisit;
+    public void SetDaysSinceLastLaraVisit(int value) => daysSinceLastLaraVisit = value;
 
     [Header("Panel Ruangan (kamar_ren & kamar_lara)")]
     [SerializeField] private GameObject kamarRenPanel;  // Panel utama (Kamar Ren)
@@ -104,6 +114,11 @@ public class GameManager : MonoBehaviour
         if (talkToLaraButton != null) talkToLaraButton.onClick.AddListener(TalkToLara);
         if (upgradeSkillsButton != null) upgradeSkillsButton.onClick.AddListener(UpgradeSkills);
         if (backToRenButton != null) backToRenButton.onClick.AddListener(ReturnToKamarRen);
+
+        // Tombol Save/Load di HUD
+        if (saveButton != null) saveButton.onClick.AddListener(() => { if (saveLoadUI != null) saveLoadUI.OpenPanel(true); });
+        if (loadButton != null) loadButton.onClick.AddListener(() => { if (saveLoadUI != null) saveLoadUI.OpenPanel(false); });
+        if (mainMenuButton != null) mainMenuButton.onClick.AddListener(ReturnToMainMenu);
 
         UpdateUI();
     }
@@ -346,6 +361,14 @@ public class GameManager : MonoBehaviour
     public void UpgradeSkills()
     {
         Debug.Log("Upgrade Skills ditekan: Aksi ini belum diimplementasikan (Placeholder).");
+    }
+
+    /// <summary>
+    /// Kembali ke scene Main Menu.
+    /// </summary>
+    public void ReturnToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     private void OnDayChanged()
