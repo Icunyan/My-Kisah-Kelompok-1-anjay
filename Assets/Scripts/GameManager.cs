@@ -138,6 +138,47 @@ public class GameManager : MonoBehaviour
         if (loadButton != null) loadButton.onClick.AddListener(() => { if (saveLoadUI != null) saveLoadUI.OpenPanel(false); });
         if (mainMenuButton != null) mainMenuButton.onClick.AddListener(ReturnToMainMenu);
 
+        // Reparent HUD buttons to Canvas root so they remain visible in both Kamar Ren and Kamar Lara
+        GameObject canvasObj = GameObject.Find("Canvas");
+        if (canvasObj != null)
+        {
+            Transform[] allTransforms = canvasObj.GetComponentsInChildren<Transform>(true);
+            Transform hudContainer = null;
+            foreach (Transform t in allTransforms)
+            {
+                if (t.gameObject.name == "HUD_SaveLoadButtons")
+                {
+                    hudContainer = t;
+                    break;
+                }
+            }
+
+            if (hudContainer != null)
+            {
+                if (hudContainer.parent != canvasObj.transform)
+                {
+                    hudContainer.SetParent(canvasObj.transform, false);
+                    hudContainer.gameObject.SetActive(true);
+                    
+                    Transform dialoguePanelT = canvasObj.transform.Find("Panel Dialogue");
+                    if (dialoguePanelT != null)
+                    {
+                        hudContainer.SetSiblingIndex(dialoguePanelT.GetSiblingIndex());
+                    }
+                    else
+                    {
+                        hudContainer.SetAsLastSibling();
+                    }
+                }
+            }
+            else if (saveButton != null && saveButton.transform.parent != canvasObj.transform)
+            {
+                saveButton.transform.SetParent(canvasObj.transform, false);
+                if (loadButton != null) loadButton.transform.SetParent(canvasObj.transform, false);
+                if (mainMenuButton != null) mainMenuButton.transform.SetParent(canvasObj.transform, false);
+            }
+        }
+
         UpdateUI();
 
         // Putar dialog pembuka jika ini adalah game baru
