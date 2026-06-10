@@ -157,6 +157,12 @@ public class GameManager : MonoBehaviour
         GameObject canvasObj = GameObject.Find("Canvas");
         if (canvasObj != null)
         {
+            for (int i = 0; i < canvasObj.transform.childCount; i++)
+            {
+                Transform child = canvasObj.transform.GetChild(i);
+                Debug.Log($"[DEBUG CANVAS CHILD] Index {i}: {child.name}, activeSelf: {child.gameObject.activeSelf}");
+            }
+
             Transform[] allTransforms = canvasObj.GetComponentsInChildren<Transform>(true);
             Transform hudContainer = null;
             foreach (Transform t in allTransforms)
