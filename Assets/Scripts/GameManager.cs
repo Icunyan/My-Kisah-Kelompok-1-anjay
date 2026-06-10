@@ -170,6 +170,10 @@ public class GameManager : MonoBehaviour
 
             if (hudContainer != null)
             {
+                RectTransform rt = hudContainer.GetComponent<RectTransform>();
+                Debug.Log($"[DEBUG CONTAINER] Parent: {hudContainer.parent.name}, activeSelf: {hudContainer.gameObject.activeSelf}, activeInHierarchy: {hudContainer.gameObject.activeInHierarchy}");
+                Debug.Log($"[DEBUG CONTAINER] pos: {rt.anchoredPosition}, size: {rt.sizeDelta}, anchors: {rt.anchorMin} to {rt.anchorMax}, pivot: {rt.pivot}");
+
                 if (hudContainer.parent != canvasObj.transform)
                 {
                     hudContainer.SetParent(canvasObj.transform, false);
