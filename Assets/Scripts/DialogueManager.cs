@@ -362,6 +362,8 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public void OnNextButtonClicked()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (isTyping)
         {
             // Jika teks masih mengetik, langsung selesaikan teks baris ini
@@ -439,6 +441,8 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private void OnChoiceSelected(int index)
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayButtonClick();
+
         if (currentDialogue == null || index >= currentDialogue.choices.Length) return;
 
         DialogueData nextNode = currentDialogue.choices[index].nextDialogue;
@@ -700,6 +704,8 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator PlayShakeEffect()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayImpact();
+
         // Shake the VN elements (background and characters) instead of the dialogue panel
         // so that the text itself does not vibrate, maintaining readability.
         RectTransform bgRt = vnBackground != null ? vnBackground.GetComponent<RectTransform>() : null;

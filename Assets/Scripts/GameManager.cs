@@ -162,6 +162,12 @@ public class GameManager : MonoBehaviour
             if (badEndingPanel != null) badEndingPanel.SetActive(false);
             UpdateUI();
         }
+
+        // Putar BGM Gameplay saat masuk ke scene ini
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGameplayBGM();
+        }
     }
 
     /// <summary>
@@ -254,6 +260,8 @@ public class GameManager : MonoBehaviour
     {
         if (energy > 0)
         {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayMagicAura();
+
             energy -= 1;
             
             // Tentukan penambahan progres
@@ -286,6 +294,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Rest()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayEnergyFlow();
+
         energy = maxEnergy;
         Debug.Log("Rest berhasil! Energi pulih sepenuhnya.");
         AdvanceCycle();
@@ -426,6 +436,8 @@ public class GameManager : MonoBehaviour
     {
         if (energy > 0)
         {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlaySwoosh();
+
             energy -= 1; // Mengurangi 1 energi
             daysSinceLastLaraVisit = 0; // Reset visit counter
             if (kamarRenPanel != null) kamarRenPanel.SetActive(false);
@@ -454,6 +466,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ReturnToKamarRen()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlaySwoosh();
+
         if (kamarRenPanel != null) kamarRenPanel.SetActive(true);
         if (kamarLaraPanel != null) kamarLaraPanel.SetActive(false);
 
@@ -536,6 +550,8 @@ public class GameManager : MonoBehaviour
         if (kamarRenPanel != null) kamarRenPanel.SetActive(false);
         if (kamarLaraPanel != null) kamarLaraPanel.SetActive(false);
 
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayTensionBGM();
+
         if (DialogueManager.Instance != null)
         {
             DialogueData dialogueToShow = (day >= 40) ? dayLimitDialogue : badEndingDialogue;
@@ -574,6 +590,11 @@ public class GameManager : MonoBehaviour
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.EndDialogue();
+        }
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGameplayBGM();
         }
 
         UpdateUI();

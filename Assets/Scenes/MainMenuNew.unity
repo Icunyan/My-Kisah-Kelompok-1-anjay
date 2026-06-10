@@ -464,7 +464,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4287420914
   m_fontColor: {r: 0.95, g: 0.85, b: 0.55, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1445,6 +1445,69 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &870139039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870139041}
+  - component: {fileID: 870139040}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &870139040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870139039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e29afd877a66794bad70b39dc1cf6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainMenuBGM: {fileID: 8300000, guid: 55bb3e8d79e95cd46b658a873a7df82a, type: 3}
+  gameplayBGM: {fileID: 8300000, guid: ac689cd9beb4b3c4586c1e3cb0fae897, type: 3}
+  tensionBGM: {fileID: 8300000, guid: b33fc970cdf08d94299664043b595321, type: 3}
+  bgmVolume: 0.5
+  fadeDuration: 1.5
+  sfxVolume: 0.7
+  sfxButtonClick: {fileID: 0}
+  sfxSwordStrike: {fileID: 0}
+  sfxExplosion: {fileID: 0}
+  sfxMagicAura: {fileID: 0}
+  sfxMagicPotion: {fileID: 0}
+  sfxSwoosh: {fileID: 0}
+  sfxThunder: {fileID: 0}
+  sfxWind: {fileID: 0}
+  sfxEnergyFlow: {fileID: 0}
+  sfxImpact: {fileID: 0}
+  sfxExplosionHit: {fileID: 0}
+  sfxExplosionBattle: {fileID: 0}
+  sfxFairySwoosh: {fileID: 0}
+--- !u!4 &870139041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870139039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &893834951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,8 +1854,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2079188487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2441,7 +2504,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -2479,8 +2542,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2079188487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2733,8 +2796,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2079188487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 480, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3107,3 +3170,4 @@ SceneRoots:
   - {fileID: 515484653}
   - {fileID: 444406752}
   - {fileID: 929155651}
+  - {fileID: 870139041}

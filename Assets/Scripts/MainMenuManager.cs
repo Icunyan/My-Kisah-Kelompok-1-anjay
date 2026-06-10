@@ -86,6 +86,12 @@ public class MainMenuManager : MonoBehaviour
 
         // Update title
         if (titleText != null) titleText.text = "Orenomonogatari";
+
+        // Play BGM menu utama (mangmaru - rainbows inside)
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMainMenuBGM();
+        }
     }
 
     // =========================================================================
