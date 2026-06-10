@@ -134,6 +134,7 @@ public class MainMenuManager : MonoBehaviour
 
         // Simpan slot yang akan di-load, lalu pindah scene
         pendingLoadSlot = slotIndex;
+        SaveLoadManager.isLoadedGame = true;
 
         // Register callback untuk load setelah scene selesai dimuat
         SceneManager.sceneLoaded += OnGameplaySceneLoaded;
