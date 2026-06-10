@@ -12,11 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
   m_Name: day_limit_bad_ending
   m_EditorClassIdentifier: 
-  characterName: SYSTEM
+  characterName: 
   characterID: 
   dialogueLines:
-  - Time runs out! You reached day 40 and failed to save Lara...
-  lines: []
+  - Lara mati karena kamu telat menyelamatkan dia...
+  lines:
+  - speakerName: SISTEM
+    speakerID: SYSTEM
+    customPortrait: {fileID: 0}
+    text: Time runs out! You reached day 40 and failed to save Lara...
+    customBackground: {fileID: 21300000, guid: 2fa42e24252ad2e4fb8aef11c291ebb0, type: 3}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
   hasChoices: 0
   choices: []
   nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 1

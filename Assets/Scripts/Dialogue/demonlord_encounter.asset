@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: demonlord_encounter
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: "Setelah menembus rintangan yang tak terhitung jumlahnya di Benua Iblis,
+      mereka akhirnya menemukan tanaman obat langka itu. Namun, aura kegelapan yang
+      pekat mendadak mengepung mereka, melahirkan sosok bayangan raksasa yang mengerikan\u2014Raja
+      Iblis."
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: Demon Lord
+    speakerID: DEMONLORD
+    customPortrait: {fileID: 0}
+    text: Semut-semut kecil yang lancang... Beraninya kalian menginjakkan kaki di
+      istanaku hanya demi setangkai rumput penawar ini! Jiwa kalian akan menjadi
+      santapanku!
+    customBackground: {fileID: 0}
+    animationTrigger: shake
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Kami telah melangkah sejauh ini, bertarung melewati badai mana, dan kami
+      tidak akan mundur sekarang! Serahkan obat itu, Raja Iblis!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Demon Lord
+    speakerID: DEMONLORD
+    customPortrait: {fileID: 0}
+    text: Kematian menanti kalian! Terimalah murka kegelapan ini!
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Marco
+    speakerID: MARCO
+    customPortrait: {fileID: 0}
+    text: Ren, awas! Uuugh...! Serangan ini kuat sekali... Tapi perisaiku... tidak
+      akan pernah hancur demi sahabat kita!
+    customBackground: {fileID: 0}
+    animationTrigger: shake
+    characterPosition: R
+    emotionIndex: 0
+  - speakerName: Lucia
+    speakerID: LUCIA
+    customPortrait: {fileID: 0}
+    text: Cahaya suci, sembuhkan luka mereka! Singkirkan kabut kegelapan ini!
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Sekarang, Marco! Lucia! Satukan mana kita! Rasakan kekuatan tekad kami,
+      Raja Iblis!!!
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Dengan kekuatan persahabatan dan tekad yang bulat, mereka menyatukan kekuatan
+      pelindung suci Lucia, ketahanan Marco, dan sihir penghancur Ren untuk mengalahkan
+      Raja Iblis!
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: None
+    emotionIndex: 0
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 11400000, guid: cf8d65e6bd6f0e144a021af69a9d27ce, type: 2}
+  actionID: 
+  isCutscene: 1

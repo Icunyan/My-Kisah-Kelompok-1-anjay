@@ -16,5 +16,9 @@ MonoBehaviour:
   characterID: lara
   dialogueLines:
   - Wassap
+  lines: []
   hasChoices: 0
   choices: []
+  nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 0

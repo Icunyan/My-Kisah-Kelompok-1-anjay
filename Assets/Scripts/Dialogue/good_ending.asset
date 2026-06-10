@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: good_ending
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Kembali ke Morgendorf dengan selamat, Ren segera meracik ramuan penawar
+      dan memberikannya kepada Lara. Keheningan mencekam ruangan sebelum akhirnya
+      Lara perlahan membuka matanya, dan warna kehidupan kembali ke pipinya.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: Lara
+    speakerID: LARA
+    customPortrait: {fileID: 0}
+    text: Ren... Marco... Lucia...? Aku merasa... kehangatan mengalir kembali di
+      sirkuit manaku. Rasa sakit yang menyiksa itu... sudah hilang...
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Lara! Kamu berhasil! Syukurlah... penawar itu benar-benar bekerja. Kami
+      sangat mengkhawatirkanmu.
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Lara
+    speakerID: LARA
+    customPortrait: {fileID: 0}
+    text: Aku tahu betapa besarnya bahaya yang kalian tempuh di Benua Iblis demi
+      aku. Aku tidak ingin lagi menjadi beban yang hanya bisa berbaring di kamar
+      ini...
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Marco
+    speakerID: MARCO
+    customPortrait: {fileID: 0}
+    text: Kamu tidak pernah menjadi beban, Lara. Kami senang melihat senyummu kembali.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
+  - speakerName: Lara
+    speakerID: LARA
+    customPortrait: {fileID: 0}
+    text: Mulai hari ini, aku akan melatih kembali sihirku. Aku ingin ikut berpetualang
+      dan melindungi kalian semua sebagai anggota party!
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Lucia
+    speakerID: LUCIA
+    customPortrait: {fileID: 0}
+    text: Tentu saja! Dengan adanya kamu, party kita akan menjadi yang terkuat di
+      dunia!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Lara resmi bergabung ke dalam party. Di bawah langit senja Morgendorf yang
+      damai, mereka melangkah keluar bersama, siap menulis lembaran petualangan baru
+      yang tanpa batas.
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: None
+    emotionIndex: 0
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 1

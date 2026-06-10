@@ -18,31 +18,40 @@ MonoBehaviour:
   lines:
   - speakerName: Marco
     speakerID: MARCO
-    text: (Berjalan cepat mendekat dengan raut cemas) Lara! Kau memaksakan dirimu
-      lagi? Istirahatlah dulu, pasokan medisnya sudah datang.
+    customPortrait: {fileID: 0}
+    text: Lara! Kau memaksakan dirimu lagi? Istirahatlah dulu, pasokan medisnya sudah
+      datang.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Lara
     speakerID: LARA
-    text: "(Menoleh lemah, menyeka keringat dingin di dahinya) Aku tidak apa-apa,
-      Marco... warga masih banyak yang\u2014 (Matanya tiba-tiba tertuju pada sosok
-      di belakang Marco, seketika perban di tangannya terjatuh) ...Ren? Ini... benar-benar
-      kau?"
+    customPortrait: {fileID: 0}
+    text: "Aku tidak apa-apa, Marco... warga masih banyak yang\u2014"
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Lara
+    speakerID: LARA
+    customPortrait: {fileID: 0}
+    text: ...Ren? Ini... benar-benar kau?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: C
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
-    text: (Berjalan mendekat dengan senyum lega sekaligus prihatin, lalu berlutut
-      di depan kursi Lara) Lara Maaf aku terlambat. Jangan paksakan sihirmu lagi,
-      biar aku yang bantu sisa warga di sini.
-  - speakerName: Narasi
-    speakerID: NARASI
-    text: 'Berikut adalah kelanjutan cerita untuk Section 4, di mana mereka bergotong
-      royong membantu warga, lalu beristirahat sambil bernostalgia tentang masa lalu
-      dan janji mereka:
-
-
-      Ren segera merapalkan sihir pemulihan dari akademinya
-      untuk mengobati luka warga yang tersisa, sementara Marco dengan tubuh besarnya
-      cekatan memindahkan puing-puing dan menata tempat istirahat yang layak. Setelah
-      semua warga tertangani dan kondisi panti asuhan mulai kondusif, ketiganya akhirnya
-      bisa duduk bersama di sudut ruangan yang tenang.'
+    customPortrait: {fileID: 0}
+    text: Lara Maaf aku terlambat. Jangan paksakan sihirmu lagi, biar aku yang bantu
+      sisa warga di sini.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   hasChoices: 0
   choices: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 5f326ae985af64742a986ca831f99625, type: 2}
+  actionID: 
+  isCutscene: 1

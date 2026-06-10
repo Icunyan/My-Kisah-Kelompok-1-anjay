@@ -18,56 +18,106 @@ MonoBehaviour:
   lines:
   - speakerName: Ren
     speakerID: REN
-    text: (Terkejut, langsung menahan tubuh Lara sebelum membentur lantai) Lara?!
+    customPortrait: {fileID: 0}
+    text: Lara?!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
-    text: (Seketika panik, ikut berlutut di samping mereka) Ada apa dengannya?! Lara!
-      Sial, dia pasti benar-benar kehabisan energi sihirnya karena memaksakan diri
-      sejak tadi!
+    customPortrait: {fileID: 0}
+    text: Ada apa dengannya?! Lara! Sial, dia pasti benar-benar kehabisan energi
+      sihirnya karena memaksakan diri sejak tadi!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Narasi
     speakerID: NARASI
+    customPortrait: {fileID: 0}
     text: (Tiba-tiba, pintu aula panti asuhan terbuka lebar. Derap langkah kaki yang
       tergesa-gesa terdengar mendekat, disusul oleh sebuah suara yang sangat familier
       bagi Ren.)
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
-    text: '"Ren! Akhirnya aku menemukanmu! Kenapa kau hobi sekali pergi duluan tanpa
-      menunggu, sih?!"'
+    customPortrait: {fileID: 21300000, guid: ad22100648446e741aab6bc13bba3df3, type: 3}
+    text: Ren! Akhirnya aku menemukanmu! Kenapa kau hobi sekali pergi duluan tanpa
+      menunggu, sih?!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
-    text: (Menoleh kaget) Lu... Lucia?! Kenapa kau bisa ada di sini? Kau menyusulku
-      dari akademi?
+    customPortrait: {fileID: 0}
+    text: Lu... Lucia?! Kenapa kau bisa ada di sini? Kau menyusulku dari akademi?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
-    text: (Napasnya terengah-engah, dengan jubah penyihir akademinya yang sedikit
-      kotor) Tentu saja! Berita serangan pasukan iblis ini sudah menyebar luas, aku
+    customPortrait: {fileID: 21300000, guid: 36bf06e3419993a4b923fd6f20ae3bac, type: 3}
+    text: Tentu saja! Berita serangan pasukan iblis ini sudah menyebar luas, aku
       tidak mungkin membiarkanmu menghadapi ini sendirian!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
-    text: (Wajahnya berubah penuh harap) Lucia, kamu datang di waktu yang tepat!
-      Kau jauh lebih jago sihir penyembuhan tingkat tinggi daripadaku. Periksa keadaan
-      Lara!
+    customPortrait: {fileID: 0}
+    text: Lucia, kamu datang di waktu yang tepat! Kau jauh lebih jago sihir penyembuhan
+      tingkat tinggi daripadaku. Periksa keadaan Lara!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
-    text: (Seketika terdiam, matanya menatap gadis rambut panjang yang sedang didekap
-      Ren) ...Tunggu. Jadi, dia ini... Lara? Teman masa kecil yang selalu, selalu
-      kau ceritakan di akademi itu?
+    customPortrait: {fileID: 21300000, guid: 4f5409fd981e0224984030caeb9f1a76, type: 3}
+    text: ' ...Tunggu. Jadi, dia ini... Lara? Teman masa kecil yang selalu, selalu
+      kau ceritakan di akademi itu?'
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
-    text: (Panik) Iya! Kumohon, Lucia, nanti saja tanyanya. Dia pingsan karena kehabisan
+    customPortrait: {fileID: 0}
+    text: Iya! Kumohon, Lucia, nanti saja tanyanya. Dia pingsan karena kehabisan
       mana!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
-    text: (Menghela napas panjang, mengerucutkan bibirnya sedikit dengan tatapan
-      yang agak cemburu) Huh... jadi ini orangnya. Baiklah, baiklah! Minggir sedikit,
-      biar kuperiksa. Jauh-jauh aku menyusulmu ke sini, malah langsung disuruh mengobati
-      saingan... maksudku, temanmu! (Langsung merapalkan mantra sihir penyembuh tingkat
-      tinggi, sementara tangannya mulai memancarkan cahaya hijau yang menenangkan).
+    customPortrait: {fileID: 21300000, guid: 091bc4b6901a3a8459e334f98746119f, type: 3}
+    text: Huh... jadi ini orangnya. Baiklah, baiklah! Minggir sedikit, biar kuperiksa.
+      Jauh-jauh aku menyusulmu ke sini, malah langsung disuruh mengobati saingan...
+      maksudku, temanmu!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Narasi
     speakerID: NARASI
+    customPortrait: {fileID: 0}
     text: Cahaya hijau dari sihir penyembuhan Lucia perlahan meredup, raut wajahnya
       berubah menjadi semakin serius setelah memeriksa aliran mana di tubuh Lara.
       Ren dan Marco menunggu dengan cemas
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: None
+    emotionIndex: 0
   hasChoices: 0
   choices: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 917f9369bbb6ce3449061d11cbc6f31a, type: 2}
+  actionID: 
+  isCutscene: 1

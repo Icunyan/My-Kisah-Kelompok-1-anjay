@@ -16,21 +16,58 @@ MonoBehaviour:
   characterID: 
   dialogueLines: []
   lines:
-  - speakerName: Narasi
+  - speakerName: 
     speakerID: NARASI
-    text: Dahulu kala disebuah desa di ujung dunia, Ada tiga anak di panti asuhan
+    customPortrait: {fileID: 0}
+    text: 'Dahulu kala disebuah desa di ujung dunia, Ada tiga anak di panti asuhan
       yang bersahabat, bermimpi suatu hari menjadi petualang, menjelajahi dunia yang
-      luas. Selang berlalu Ren salah satu anak, mendapat undangan dari salah satu
-      pedepokan sihir ternama untuk menjadi master sihir. Dengan berat hati, diapun
-      harus meninggalkan kedua teman nya Lara dan Marco. Walaupun begitu mereka berjanji
-      ketika mereka bersama kembali, mereka akan memulai petualangan hebat dan menjelajahi
-      dunia
-  - speakerName: Narasi
+      luas. '
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
+  - speakerName: 
     speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Selang berlalu Ren salah satu anak, mendapat undangan dari salah satu pedepokan
+      sihir ternama untuk menjadi master sihir. Dengan berat hati, diapun harus meninggalkan
+      kedua teman nya Lara dan Marco. Walaupun begitu mereka berjanji ketika mereka
+      bersama kembali, mereka akan memulai petualangan hebat dan menjelajahi dunia
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Dengan berat hati, diapun harus meninggalkan kedua teman nya Lara dan Marco.
+      Walaupun begitu mereka berjanji ketika mereka bersama kembali, mereka akan
+      memulai petualangan hebat dan menjelajahi dunia.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
     text: Waktu terus berjalan, berita buruk sampai ke akademi, desa Morgendorf tempat
       asal Ren diserang oleh pasukan raja iblis, desanya hancur dan korban banyak
       berjatuhan. Ini menggentarkan hati Ren untuk pulang kembali. Membantu kampung
       halaman nya.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Disini lah, cerita ini dimulai.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
   hasChoices: 0
   choices: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: e6ed8aa33d932e04a99a393973fcdd79, type: 2}
+  actionID: 
+  isCutscene: 1

@@ -85,7 +85,7 @@ public class MainMenuManager : MonoBehaviour
         if (loadBackButton != null) loadBackButton.onClick.AddListener(OnBackToMainMenu);
 
         // Update title
-        if (titleText != null) titleText.text = "Fantasy Life VN";
+        if (titleText != null) titleText.text = "Orenomonogatari";
     }
 
     // =========================================================================
@@ -94,6 +94,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void OnNewGame()
     {
+        SaveLoadManager.isLoadedGame = false; // Reset loaded game flag
         pendingLoadSlot = -1; // Tidak ada slot yang di-load
         SceneManager.LoadScene(gameplaySceneName);
     }
@@ -185,7 +186,7 @@ public class MainMenuManager : MonoBehaviour
                     SaveData data = SaveLoadManager.Instance.GetSaveData(slotNum);
                     string phaseName = ((CyclePhase)data.cyclePhase).ToString();
                     loadSlotInfoTexts[i].text = $"Slot {slotNum}  |  Hari {data.day} - {phaseName}\n" +
-                                                 $"HP:{data.hp}  ATK:{data.atk}  DEF:{data.def}\n" +
+                                                 $"Riset: {data.researchProgress} / {data.maxResearchLevel}\n" +
                                                  $"Disimpan: {data.saveDateTime}";
                 }
                 else
@@ -200,4 +201,5 @@ public class MainMenuManager : MonoBehaviour
             }
         }
     }
+
 }

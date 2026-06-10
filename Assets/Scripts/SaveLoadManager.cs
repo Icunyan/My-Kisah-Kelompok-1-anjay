@@ -8,6 +8,7 @@ using UnityEngine;
 public class SaveLoadManager : MonoBehaviour
 {
     public static SaveLoadManager Instance { get; private set; }
+    public static bool isLoadedGame = false; // Menandai apakah game baru saja di-load
 
     public const int MAX_SLOTS = 3;
     private const string SAVE_KEY_PREFIX = "SaveSlot_";
@@ -50,9 +51,11 @@ public class SaveLoadManager : MonoBehaviour
         // Kumpulkan data dari GameManager
         SaveData data = new SaveData
         {
-            hp = gm.hp,
-            atk = gm.atk,
-            def = gm.def,
+            researchProgress = gm.researchProgress,
+            maxResearchLevel = gm.maxResearchLevel,
+            isLaraWatchedByFriend = gm.GetIsLaraWatchedByFriend(),
+            laraWardDaysRemaining = gm.GetLaraWardDaysRemaining(),
+            isResearchBuffed = gm.GetIsResearchBuffed(),
             day = gm.day,
             cyclePhase = (int)gm.cyclePhase,
             energy = gm.energy,
@@ -104,10 +107,14 @@ public class SaveLoadManager : MonoBehaviour
             return false;
         }
 
+        isLoadedGame = true; // Set loaded game flag
+
         // Terapkan data ke GameManager
-        gm.hp = data.hp;
-        gm.atk = data.atk;
-        gm.def = data.def;
+        gm.researchProgress = data.researchProgress;
+        gm.maxResearchLevel = data.maxResearchLevel;
+        gm.SetIsLaraWatchedByFriend(data.isLaraWatchedByFriend);
+        gm.SetLaraWardDaysRemaining(data.laraWardDaysRemaining);
+        gm.SetIsResearchBuffed(data.isResearchBuffed);
         gm.day = data.day;
         gm.cyclePhase = (CyclePhase)data.cyclePhase;
         gm.energy = data.energy;

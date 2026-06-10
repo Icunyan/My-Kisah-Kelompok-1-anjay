@@ -18,7 +18,12 @@ MonoBehaviour:
   lines:
   - speakerName: Lara
     speakerID: LARA
+    customPortrait: {fileID: 21300000, guid: 8bfdfd283a903a341a92276d31cfa03d, type: 3}
     text: Ah, Ren! butuh apa kamu hari ini?
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: 
+    emotionIndex: 0
   hasChoices: 1
   choices:
   - choiceText: Tanya Kabar
@@ -28,3 +33,5 @@ MonoBehaviour:
   - choiceText: Kembali
     nextDialogue: {fileID: 11400000, guid: 9a3568d662a0068418a0cd4044b82faf, type: 2}
   nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 0

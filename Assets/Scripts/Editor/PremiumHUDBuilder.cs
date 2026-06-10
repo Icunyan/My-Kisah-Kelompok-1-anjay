@@ -77,7 +77,7 @@ public class PremiumHUDBuilder : EditorWindow
         hudRect.sizeDelta = new Vector2(0f, 90f);
 
         // Bersihkan Card lama jika ada agar bersih
-        string[] cardNames = { "Card_HP", "Card_Stats", "Card_Energy", "Card_Cycle" };
+        string[] cardNames = { "Card_Research", "Card_HP", "Card_Stats", "Card_Energy", "Card_Cycle" };
         foreach (string cardName in cardNames)
         {
             Transform t = panelHUD.transform.Find(cardName);
@@ -90,36 +90,25 @@ public class PremiumHUDBuilder : EditorWindow
         // Helper untuk mempermudah pembuatan UI
         FontStyles boldStyle = FontStyles.Bold;
 
-        // --- 1. CARD HP ---
-        GameObject cardHP = CreateCard(panelHUD, "Card_HP", new Vector2(190f, 75f));
+        // --- 1. CARD RESEARCH ---
+        GameObject cardResearch = CreateCard(panelHUD, "Card_Research", new Vector2(250f, 75f));
         // Title Text
-        GameObject hpTitle = CreateText(cardHP, "Title", "HP", TextAlignmentOptions.Left, 10, new Vector2(10f, 20f));
-        hpTitle.GetComponent<TMP_Text>().color = new Color(1f, 1f, 1f, 0.6f);
+        GameObject researchTitle = CreateText(cardResearch, "Title", "CURE PROGRESS", TextAlignmentOptions.Left, 10, new Vector2(10f, 20f));
+        researchTitle.GetComponent<TMP_Text>().color = new Color(0.6f, 0.8f, 1f, 0.7f); // Soft Cyan
         // Value Text
-        GameObject hpVal = CreateText(cardHP, "Value", "100", TextAlignmentOptions.Right, 16, new Vector2(-10f, 20f), boldStyle);
+        GameObject researchVal = CreateText(cardResearch, "Value", "0 / 30", TextAlignmentOptions.Right, 14, new Vector2(-10f, 20f), boldStyle);
         // Bar Background
-        GameObject hpBarBg = CreateUIObject(cardHP, "BarBackground");
-        SetRect(hpBarBg, new Vector2(170f, 12f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 12f));
-        hpBarBg.AddComponent<Image>().color = new Color(0.15f, 0.15f, 0.15f, 1f);
+        GameObject researchBarBg = CreateUIObject(cardResearch, "BarBackground");
+        SetRect(researchBarBg, new Vector2(230f, 12f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 12f));
+        researchBarBg.AddComponent<Image>().color = new Color(0.15f, 0.15f, 0.15f, 1f);
         // Bar Fill
-        GameObject hpBarFill = CreateUIObject(hpBarBg, "Fill");
-        SetRect(hpBarFill, Vector2.zero, new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero);
-        Image hpFillImg = hpBarFill.AddComponent<Image>();
-        hpFillImg.color = new Color(0.85f, 0.24f, 0.2f, 1f); // Nice Red-Pink
-        hpFillImg.type = Image.Type.Filled;
-        hpFillImg.fillMethod = Image.FillMethod.Horizontal;
-        hpFillImg.fillOrigin = 0; // Left
-
-        // --- 2. CARD STATS (ATK & DEF) ---
-        GameObject cardStats = CreateCard(panelHUD, "Card_Stats", new Vector2(160f, 75f));
-        // ATK Row
-        GameObject atkTitle = CreateText(cardStats, "ATK_Label", "ATK", TextAlignmentOptions.Left, 12, new Vector2(12f, 15f));
-        atkTitle.GetComponent<TMP_Text>().color = new Color(1f, 0.85f, 0.3f, 0.8f); // Soft Gold
-        GameObject atkVal = CreateText(cardStats, "ATK_Value", "20", TextAlignmentOptions.Right, 14, new Vector2(-12f, 15f), boldStyle);
-        // DEF Row
-        GameObject defTitle = CreateText(cardStats, "DEF_Label", "DEF", TextAlignmentOptions.Left, 12, new Vector2(12f, -15f));
-        defTitle.GetComponent<TMP_Text>().color = new Color(0.3f, 0.85f, 1f, 0.8f); // Cyan
-        GameObject defVal = CreateText(cardStats, "DEF_Value", "10", TextAlignmentOptions.Right, 14, new Vector2(-12f, -15f), boldStyle);
+        GameObject researchBarFill = CreateUIObject(researchBarBg, "Fill");
+        SetRect(researchBarFill, Vector2.zero, new Vector2(0f, 0f), new Vector2(1f, 1f), Vector2.zero);
+        Image researchFillImg = researchBarFill.AddComponent<Image>();
+        researchFillImg.color = new Color(0.55f, 0.35f, 0.85f, 1f); // Sleek Magical Purple
+        researchFillImg.type = Image.Type.Filled;
+        researchFillImg.fillMethod = Image.FillMethod.Horizontal;
+        researchFillImg.fillOrigin = 0; // Left
 
         // --- 3. CARD ENERGY ---
         GameObject cardEnergy = CreateCard(panelHUD, "Card_Energy", new Vector2(200f, 75f));
@@ -203,10 +192,8 @@ public class PremiumHUDBuilder : EditorWindow
             SerializedObject so = new SerializedObject(gm);
             
             // Wire premium references
-            so.FindProperty("hpFillImage").objectReferenceValue = hpFillImg;
-            so.FindProperty("hpValText").objectReferenceValue = hpVal.GetComponent<TMP_Text>();
-            so.FindProperty("atkValText").objectReferenceValue = atkVal.GetComponent<TMP_Text>();
-            so.FindProperty("defValText").objectReferenceValue = defVal.GetComponent<TMP_Text>();
+            so.FindProperty("researchFillImage").objectReferenceValue = researchFillImg;
+            so.FindProperty("researchValText").objectReferenceValue = researchVal.GetComponent<TMP_Text>();
             so.FindProperty("energyValText").objectReferenceValue = energyVal.GetComponent<TMP_Text>();
             so.FindProperty("dayValText").objectReferenceValue = dayValText.GetComponent<TMP_Text>();
             so.FindProperty("cycleValText").objectReferenceValue = cycleValText.GetComponent<TMP_Text>();
@@ -266,6 +253,19 @@ public class PremiumHUDBuilder : EditorWindow
             for (int i = 0; i < 3; i++)
             {
                 orbsProp.GetArrayElementAtIndex(i).objectReferenceValue = energyOrbs[i];
+            }
+
+            // Dapatkan DialogueData GIM_Story asset
+            string gimStoryPath = "Assets/Scripts/Dialogue/GIM_Story.asset";
+            DialogueData gimStorySO = AssetDatabase.LoadAssetAtPath<DialogueData>(gimStoryPath);
+            if (gimStorySO != null)
+            {
+                so.FindProperty("openingDialogue").objectReferenceValue = gimStorySO;
+                Debug.Log("BuildPremiumHUD: Menghubungkan openingDialogue ke GIM_Story.asset.");
+            }
+            else
+            {
+                Debug.LogWarning("BuildPremiumHUD: GIM_Story.asset tidak ditemukan di " + gimStoryPath);
             }
 
             so.ApplyModifiedProperties();

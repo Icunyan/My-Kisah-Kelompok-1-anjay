@@ -14,13 +14,11 @@ public class GameManager : MonoBehaviour
     // Singleton agar mudah diakses dari script lainnya
     public static GameManager Instance { get; private set; }
 
-    [Header("Statistik Player (Stats)")]
-    [Tooltip("Jumlah nyawa (HP) saat ini. Nilai awal default = 100.")]
-    public int hp = 100;
-    [Tooltip("Kekuatan serang (ATK) saat ini. Nilai awal default = 20.")]
-    public int atk = 20;
-    [Tooltip("Kekuatan bertahan (DEF) saat ini. Nilai awal default = 10.")]
-    public int def = 10;
+    [Header("Progres Penelitian Kutukan")]
+    [Tooltip("Tingkat kemajuan riset kutukan (Level 0 - 30).")]
+    public int researchProgress = 0;
+    [Tooltip("Tingkat kemajuan maksimal untuk menyelesaikan riset.")]
+    public int maxResearchLevel = 30;
 
     [Header("Manajemen Hari & Energi")]
     [Tooltip("Hari ke-berapa sekarang.")]
@@ -33,18 +31,13 @@ public class GameManager : MonoBehaviour
     public int maxEnergy = 3;
 
     [Header("UI Teks Tampilan")]
-    [SerializeField] private TMP_Text hpText;
-    [SerializeField] private TMP_Text atkText;
-    [SerializeField] private TMP_Text defText;
     [SerializeField] private TMP_Text energyText;
     [SerializeField] private TMP_Text dayText;
     [SerializeField] private TMP_Text cycleText;
 
     [Header("UI Premium HUD References")]
-    [SerializeField] private Image hpFillImage;               // Progress bar fill untuk HP
-    [SerializeField] private TMP_Text hpValText;              // Teks nilai HP
-    [SerializeField] private TMP_Text atkValText;             // Teks nilai ATK
-    [SerializeField] private TMP_Text defValText;             // Teks nilai DEF
+    [SerializeField] private Image researchFillImage;         // Progress bar fill untuk riset
+    [SerializeField] private TMP_Text researchValText;        // Teks nilai riset
     [SerializeField] private Image energyFillImage;           // Progress bar fill untuk Energy
     [SerializeField] private Image[] energyOrbs;              // Indikator orb energi
     [SerializeField] private TMP_Text energyValText;          // Teks nilai Energy
@@ -58,12 +51,33 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Button loadButton;            // Tombol Load di HUD
     [SerializeField] private Button mainMenuButton;        // Tombol kembali ke Main Menu
 
+    [Header("Milestones & Friend Visit Dialogues")]
+    [SerializeField] private DialogueData level10Dialogue;
+    [SerializeField] private DialogueData level15Dialogue;
+    [SerializeField] private DialogueData level20Dialogue;
+    [SerializeField] private DialogueData level30Dialogue;
+    [SerializeField] private DialogueData luciaVisitDialogue;
+    [SerializeField] private DialogueData marcoVisitDialogue;
+
     [Header("Bad Ending Settings")]
     [SerializeField] private GameObject badEndingPanel;
     [SerializeField] private DialogueData badEndingDialogue;
     [SerializeField] private DialogueData dayLimitDialogue;
     public bool isBadEnding { get; private set; } = false;
     private int daysSinceLastLaraVisit = 0;
+
+    // Status bantuan teman
+    private bool isLaraWatchedByFriend = false;
+    private int laraWardDaysRemaining = 0;
+    private bool isResearchBuffed = false;
+
+    // Accessor untuk state bantuan teman (Save/Load)
+    public bool GetIsLaraWatchedByFriend() => isLaraWatchedByFriend;
+    public void SetIsLaraWatchedByFriend(bool value) => isLaraWatchedByFriend = value;
+    public int GetLaraWardDaysRemaining() => laraWardDaysRemaining;
+    public void SetLaraWardDaysRemaining(int value) => laraWardDaysRemaining = value;
+    public bool GetIsResearchBuffed() => isResearchBuffed;
+    public void SetIsResearchBuffed(bool value) => isResearchBuffed = value;
 
     // --- Accessor methods untuk SaveLoadManager ---
     public int GetDaysSinceLastLaraVisit() => daysSinceLastLaraVisit;
@@ -81,11 +95,13 @@ public class GameManager : MonoBehaviour
     [Header("Tombol-Tombol Kamar Lara")]
     [SerializeField] private GameObject laraOptionsPanel; // Panel yang berisi 3 tombol di Kamar Lara (Talk, Upgrade, Back)
     [SerializeField] private Button talkToLaraButton;     // Tombol Talk to Lara
-    [SerializeField] private Button upgradeSkillsButton;  // Tombol Upgrade Skills (Placeholder)
     [SerializeField] private Button backToRenButton;      // Tombol Kembali ke Kamar Ren
 
     [Header("Data Dialog Lara (Scriptable Object)")]
     [SerializeField] private DialogueData talkToLaraDialogue; // Taruh file Scriptable Object dialog Lara di sini
+
+    [Header("Data Dialog Pembuka (Opening Dialogue)")]
+    [SerializeField] private DialogueData openingDialogue; // Dialog pembuka saat New Game
 
     private void Awake()
     {
@@ -99,20 +115,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Mengetahui apakah pemain sedang berada di dalam gameplay ruangan (Kamar Ren atau Kamar Lara).
+    /// </summary>
+    public bool IsInRoomGameplay()
+    {
+        return (kamarRenPanel != null && kamarRenPanel.activeSelf) || (kamarLaraPanel != null && kamarLaraPanel.activeSelf);
+    }
+
     private void Start()
     {
-        // Set awal posisi ruangan ke Kamar Ren
-        if (kamarRenPanel != null) kamarRenPanel.SetActive(true);
-        if (kamarLaraPanel != null) kamarLaraPanel.SetActive(false);
-        if (badEndingPanel != null) badEndingPanel.SetActive(false);
-
-        // Menghubungkan tombol-tombol dengan fungsinya di kode
-        if (trainButton != null) trainButton.onClick.AddListener(Train);
+        // Hubungkan tombol-tombol dengan fungsinya di kode
+        if (trainButton != null) trainButton.onClick.AddListener(ResearchCurse);
         if (visitLaraButton != null) visitLaraButton.onClick.AddListener(VisitLara);
         if (restButton != null) restButton.onClick.AddListener(Rest);
 
         if (talkToLaraButton != null) talkToLaraButton.onClick.AddListener(TalkToLara);
-        if (upgradeSkillsButton != null) upgradeSkillsButton.onClick.AddListener(UpgradeSkills);
         if (backToRenButton != null) backToRenButton.onClick.AddListener(ReturnToKamarRen);
 
         // Tombol Save/Load di HUD
@@ -121,6 +139,29 @@ public class GameManager : MonoBehaviour
         if (mainMenuButton != null) mainMenuButton.onClick.AddListener(ReturnToMainMenu);
 
         UpdateUI();
+
+        // Putar dialog pembuka jika ini adalah game baru
+        if (!SaveLoadManager.isLoadedGame && openingDialogue != null && DialogueManager.Instance != null)
+        {
+            // Sembunyikan ruangan di awal saat opening cutscene diputar
+            if (kamarRenPanel != null) kamarRenPanel.SetActive(false);
+            if (kamarLaraPanel != null) kamarLaraPanel.SetActive(false);
+            if (badEndingPanel != null) badEndingPanel.SetActive(false);
+
+            DialogueManager.Instance.StartDialogue(openingDialogue, () => {
+                // Tampilkan Kamar Ren setelah opening selesai
+                if (kamarRenPanel != null) kamarRenPanel.SetActive(true);
+                UpdateUI();
+            });
+        }
+        else
+        {
+            // Jika memuat game atau tidak ada dialog pembuka, langsung ke Kamar Ren
+            if (kamarRenPanel != null) kamarRenPanel.SetActive(true);
+            if (kamarLaraPanel != null) kamarLaraPanel.SetActive(false);
+            if (badEndingPanel != null) badEndingPanel.SetActive(false);
+            UpdateUI();
+        }
     }
 
     /// <summary>
@@ -128,11 +169,6 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void UpdateUI()
     {
-        // Update teks statistik pemain (Legacy)
-        if (hpText != null) hpText.text = "HP: " + hp;
-        if (atkText != null) atkText.text = "ATK: " + atk;
-        if (defText != null) defText.text = "DEF: " + def;
-
         // Update teks hari dan energi (Legacy)
         if (dayText != null) dayText.text = "Hari: " + day;
         if (energyText != null) energyText.text = "Energi: " + energy + " / " + maxEnergy;
@@ -154,17 +190,15 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Update Premium Visual HUD
-        if (hpFillImage != null)
+        // Update Premium Visual HUD untuk Cure Progress
+        if (researchFillImage != null)
         {
-            // Karena tidak ada sistem damage, HP saat ini selalu bernilai penuh (maksimal).
-            // Bar HP selalu penuh (1.0f) untuk mencerminkan kondisi sehat sempurna.
-            hpFillImage.fillAmount = 1f;
+            researchFillImage.fillAmount = (float)researchProgress / maxResearchLevel;
         }
-        if (hpValText != null) hpValText.text = hp.ToString();
-
-        if (atkValText != null) atkValText.text = atk.ToString();
-        if (defValText != null) defValText.text = def.ToString();
+        if (researchValText != null)
+        {
+            researchValText.text = researchProgress + " / " + maxResearchLevel;
+        }
 
         if (energyFillImage != null)
         {
@@ -178,8 +212,6 @@ public class GameManager : MonoBehaviour
             {
                 if (energyOrbs[i] != null)
                 {
-                    // Nyalakan orb (warna kuning terang) jika indeks di bawah energi saat ini,
-                    // jika tidak, redupkan (abu-abu transparan).
                     energyOrbs[i].color = (i < energy) ? new Color(1f, 0.85f, 0.1f, 1f) : new Color(0.2f, 0.2f, 0.2f, 0.5f);
                 }
             }
@@ -207,7 +239,6 @@ public class GameManager : MonoBehaviour
         }
 
         // Aktifkan / Matikan tombol berdasarkan energi
-        // Melatih Diri dan Visit Lara membutuhkan energi > 0
         bool hasEnergy = energy > 0;
         if (trainButton != null) trainButton.interactable = hasEnergy;
         if (visitLaraButton != null) visitLaraButton.interactable = hasEnergy;
@@ -217,39 +248,32 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Aksi Melatih Diri: Mengurangi 1 energi dan menambahkan stat pemain.
+    /// Aksi Riset Kutukan: Mengurangi 1 energi dan meningkatkan progres.
     /// </summary>
-    public void Train()
+    public void ResearchCurse()
     {
         if (energy > 0)
         {
             energy -= 1;
             
-            // Formula peningkatan stat: +10 ATK, +5 DEF, +10 HP
-            atk += 10;
-            def += 5;
-            hp += 10;
+            // Tentukan penambahan progres
+            int progressGain = isResearchBuffed ? 3 : 1;
+            isResearchBuffed = false; // Reset buff
 
-            // Majukan siklus waktu: Morning -> Afternoon -> Night -> Morning (Hari baru)
-            if (cyclePhase == CyclePhase.Morning)
+            researchProgress = Mathf.Min(researchProgress + progressGain, maxResearchLevel);
+            Debug.Log($"Melakukan Riset! Menambah +{progressGain} progres. Progres saat ini: {researchProgress}/{maxResearchLevel}");
+
+            // Cek Milestone
+            bool triggeredMilestone = CheckMilestones();
+
+            if (!triggeredMilestone)
             {
-                cyclePhase = CyclePhase.Afternoon;
-                Debug.Log("Melatih Diri berhasil! Energi berkurang 1. Stat bertambah. Waktu berubah ke Afternoon (Siang).");
-            }
-            else if (cyclePhase == CyclePhase.Afternoon)
-            {
-                cyclePhase = CyclePhase.Night;
-                Debug.Log("Melatih Diri berhasil! Energi berkurang 1. Stat bertambah. Waktu berubah ke Night (Malam).");
-            }
-            else if (cyclePhase == CyclePhase.Night)
-            {
-                cyclePhase = CyclePhase.Morning;
-                day += 1; // Berganti ke hari baru
-                Debug.Log("Melatih Diri berhasil! Energi berkurang 1. Stat bertambah. Hari baru dimulai: Hari " + day + " - Morning (Pagi).");
-                OnDayChanged();
+                // Roll untuk interaksi teman (25% chance)
+                RollForFriendEncounter();
             }
 
-            UpdateUI();
+            // Majukan siklus waktu
+            AdvanceCycle();
         }
         else
         {
@@ -262,38 +286,147 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void Rest()
     {
-        // Pulihkan energi ke maksimal
         energy = maxEnergy;
+        Debug.Log("Rest berhasil! Energi pulih sepenuhnya.");
+        AdvanceCycle();
+    }
 
-        // Majukan siklus waktu: Morning -> Afternoon -> Night -> Morning (Hari baru)
+    private void AdvanceCycle()
+    {
         if (cyclePhase == CyclePhase.Morning)
         {
             cyclePhase = CyclePhase.Afternoon;
-            Debug.Log("Rest berhasil! Waktu berubah ke Afternoon (Siang).");
+            Debug.Log("Waktu berubah ke Afternoon (Siang).");
         }
         else if (cyclePhase == CyclePhase.Afternoon)
         {
             cyclePhase = CyclePhase.Night;
-            Debug.Log("Rest berhasil! Waktu berubah ke Night (Malam).");
+            Debug.Log("Waktu berubah ke Night (Malam).");
         }
         else if (cyclePhase == CyclePhase.Night)
         {
             cyclePhase = CyclePhase.Morning;
             day += 1; // Berganti ke hari baru
-            Debug.Log("Rest berhasil! Hari baru dimulai: Hari " + day + " - Morning (Pagi).");
+            Debug.Log("Hari baru dimulai: Hari " + day + " - Morning (Pagi).");
             OnDayChanged();
         }
-
         UpdateUI();
     }
 
+    private void SetRenRoomButtonsInteractable(bool interactable)
+    {
+        if (trainButton != null) trainButton.interactable = interactable && energy > 0;
+        if (visitLaraButton != null) visitLaraButton.interactable = interactable && energy > 0;
+        if (restButton != null) restButton.interactable = interactable;
+    }
+
+    private bool CheckMilestones()
+    {
+        if (researchProgress == 10 && level10Dialogue != null && DialogueManager.Instance != null)
+        {
+            TriggerMilestoneDialogue(level10Dialogue);
+            return true;
+        }
+        else if (researchProgress == 15 && level15Dialogue != null && DialogueManager.Instance != null)
+        {
+            TriggerMilestoneDialogue(level15Dialogue);
+            return true;
+        }
+        else if (researchProgress == 20 && level20Dialogue != null && DialogueManager.Instance != null)
+        {
+            TriggerMilestoneDialogue(level20Dialogue);
+            return true;
+        }
+        else if (researchProgress == 30 && level30Dialogue != null && DialogueManager.Instance != null)
+        {
+            SetRenRoomButtonsInteractable(false);
+            DialogueManager.Instance.StartDialogue(level30Dialogue, () => {
+                ReturnToMainMenu();
+            });
+            return true;
+        }
+        return false;
+    }
+
+    private void TriggerMilestoneDialogue(DialogueData dialogue)
+    {
+        SetRenRoomButtonsInteractable(false);
+        DialogueManager.Instance.StartDialogue(dialogue, () => {
+            SetRenRoomButtonsInteractable(true);
+            UpdateUI();
+        });
+    }
+
+    private void RollForFriendEncounter()
+    {
+        float rand = Random.value;
+        if (rand < 0.25f)
+        {
+            float friendRand = Random.value;
+            if (friendRand < 0.5f && luciaVisitDialogue != null)
+            {
+                SetRenRoomButtonsInteractable(false);
+                DialogueManager.Instance.StartDialogue(luciaVisitDialogue, OnFriendEncounterFinished);
+            }
+            else if (marcoVisitDialogue != null)
+            {
+                SetRenRoomButtonsInteractable(false);
+                DialogueManager.Instance.StartDialogue(marcoVisitDialogue, OnFriendEncounterFinished);
+            }
+        }
+    }
+
+    private void OnFriendEncounterFinished()
+    {
+        SetRenRoomButtonsInteractable(true);
+        if (DialogueManager.Instance != null)
+        {
+            DialogueData lastNode = DialogueManager.Instance.GetLastActiveNode();
+            if (lastNode != null && !string.IsNullOrEmpty(lastNode.actionID))
+            {
+                ProcessDialogueAction(lastNode.actionID);
+            }
+        }
+        UpdateUI();
+    }
+
+    public void ProcessDialogueAction(string actionID)
+    {
+        if (string.IsNullOrEmpty(actionID)) return;
+
+        string id = actionID.ToUpper().Trim();
+        switch (id)
+        {
+            case "MARCO_WATCH":
+                isLaraWatchedByFriend = true;
+                Debug.Log("Gameplay Action: Marco setuju untuk menemani Lara. Lara tidak akan sakit besok.");
+                break;
+            case "MARCO_MEDICINE":
+                daysSinceLastLaraVisit = 0;
+                Debug.Log("Gameplay Action: Marco memberikan obat penurun demam. Sickness timer di-reset!");
+                break;
+            case "LUCIA_COLLABORATIVE":
+                isResearchBuffed = true;
+                Debug.Log("Gameplay Action: Lucia membantu riset. Progres berikutnya bertambah 3!");
+                break;
+            case "LUCIA_WARD":
+                laraWardDaysRemaining = 3;
+                Debug.Log("Gameplay Action: Lucia memasang pelindung mana. Lara aman selama 3 hari.");
+                break;
+            default:
+                Debug.LogWarning("Gameplay Action: actionID tidak dikenal: " + actionID);
+                break;
+        }
+    }
+
     /// <summary>
-    /// Aksi Visit Lara: Pindah ke Kamar Lara.
+    /// Aksi Visit Lara: Pindah ke Kamar Lara. Consumes 1 Energy.
     /// </summary>
     public void VisitLara()
     {
         if (energy > 0)
         {
+            energy -= 1; // Mengurangi 1 energi
             daysSinceLastLaraVisit = 0; // Reset visit counter
             if (kamarRenPanel != null) kamarRenPanel.SetActive(false);
             if (kamarLaraPanel != null) kamarLaraPanel.SetActive(true);
@@ -307,7 +440,8 @@ public class GameManager : MonoBehaviour
                 DialogueManager.Instance.ResetLaraExpression();
             }
 
-            Debug.Log("Pindah ke Kamar Lara.");
+            Debug.Log("Pindah ke Kamar Lara. Energi berkurang 1.");
+            UpdateUI(); // Perbarui tampilan HUD energi
         }
         else
         {
@@ -355,20 +489,14 @@ public class GameManager : MonoBehaviour
         Debug.Log("Selesai berbicara dengan Lara.");
     }
 
-    /// <summary>
-    /// Aksi Upgrade Skills: Masih berupa placeholder kosong untuk nanti.
-    /// </summary>
-    public void UpgradeSkills()
-    {
-        Debug.Log("Upgrade Skills ditekan: Aksi ini belum diimplementasikan (Placeholder).");
-    }
+
 
     /// <summary>
     /// Kembali ke scene Main Menu.
     /// </summary>
     public void ReturnToMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenuNew");
     }
 
     private void OnDayChanged()
@@ -379,10 +507,25 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        daysSinceLastLaraVisit++;
-        if (daysSinceLastLaraVisit >= 5)
+        // Cek bantuan teman
+        if (isLaraWatchedByFriend)
         {
-            TriggerBadEnding();
+            isLaraWatchedByFriend = false; // Gunakan efeknya
+            Debug.Log("Hari Berganti: Marco menemani Lara, Lara terawat dengan baik.");
+        }
+        else if (laraWardDaysRemaining > 0)
+        {
+            laraWardDaysRemaining--;
+            Debug.Log($"Hari Berganti: Ward pelindung Lucia aktif. Sisa hari: {laraWardDaysRemaining}");
+        }
+        else
+        {
+            daysSinceLastLaraVisit++;
+            Debug.Log($"Hari Berganti: Tidak ada kunjungan Lara selama {daysSinceLastLaraVisit} hari.");
+            if (daysSinceLastLaraVisit >= 5)
+            {
+                TriggerBadEnding();
+            }
         }
     }
 
@@ -402,11 +545,11 @@ public class GameManager : MonoBehaviour
 
             if (dialogueToShow != null)
             {
-                DialogueManager.Instance.StartDialogue(dialogueToShow);
+                DialogueManager.Instance.StartDialogue(dialogueToShow, ResetGame);
             }
             else
             {
-                DialogueManager.Instance.StartSystemDialogue("SYSTEM", fallbackMsg);
+                DialogueManager.Instance.StartSystemDialogue("SYSTEM", fallbackMsg, ResetGame);
             }
         }
     }
@@ -416,11 +559,13 @@ public class GameManager : MonoBehaviour
         day = 1;
         cyclePhase = CyclePhase.Morning;
         energy = maxEnergy;
-        hp = 100;
-        atk = 20;
-        def = 10;
+        researchProgress = 0;
         daysSinceLastLaraVisit = 0;
         isBadEnding = false;
+
+        isLaraWatchedByFriend = false;
+        laraWardDaysRemaining = 0;
+        isResearchBuffed = false;
 
         if (badEndingPanel != null) badEndingPanel.SetActive(false);
         if (kamarRenPanel != null) kamarRenPanel.SetActive(true);

@@ -18,32 +18,74 @@ MonoBehaviour:
   lines:
   - speakerName: Ren
     speakerID: REN
-    text: (Terengah-engah, menatap ngeri sekeliling) Tidak... ini tidak mungkin!
-      (Berlari menerobos runtuhan panti asuhan) Lara! Marco! Kumohon jawab aku...
-      Di mana kalian?!
+    customPortrait: {fileID: 0}
+    text: Tidak... ini tidak mungkin! Lara! Marco! Kumohon jawab aku... Di mana kalian?!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
-    text: (Saat berlari, Ren tidak sengaja menabrak seorang Knight) Aduh... Maaf,
-      aku tidak melihat tunggu. Marco?! Kau... tinggi sekali sekarang
+    customPortrait: {fileID: 0}
+    text: Aduh... Maaf, aku tidak melihat tunggu. Marco?! Kau... tinggi sekali sekarang
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
-    text: (Terkejut, lalu tertawa lebar hingga suaranya menggelegar) Ren?! Astaga,
-      si penyihir kecil kita akhirnya pulang! (Menepuk pundak Ren kencang) Baguslah
-      kau selamat. Sapaannya nanti saja, bantu aku bawa kotak-kotak pasokan medis
-      ini. Panti asuhan kita sekarang jadi tempat evakuasi warga!
+    customPortrait: {fileID: 0}
+    text: Ren?! Astaga, si penyihir kecil kita akhirnya pulang!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: R
+    emotionIndex: 0
+  - speakerName: Marco
+    speakerID: MARCO
+    customPortrait: {fileID: 0}
+    text: Baguslah kau selamat. Sapaannya nanti saja, bantu aku bawa kotak-kotak
+      pasokan medis ini. Panti asuhan kita sekarang jadi tempat evakuasi warga!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Narasi
     speakerID: NARASI
+    customPortrait: {fileID: 0}
     text: Ren Langsung menggunakan sihir angin untuk meringankan beban kotak obat
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: None
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: Oke, serahkan padaku! Ayo cepat!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Narasi
     speakerID: NARASI
+    customPortrait: {fileID: 0}
     text: Ren dan Marco bergegas mendorong pintu aula panti asuhan yang berat. Di
       dalam, suasana tampak penuh sesak oleh warga yang terluka. Di tengah kerumunan
-      itu, tampak Lara terduduk lemas di sebuah kursi kayu, wajahnya pucat dan nafasnya
-      terengah-engah akibat terlalu banyak menguras energi sihir untuk menyembuhkan
-      warga.
+      itu, tampak Lara terduduk lemas di sebuah kursi kayu.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Wajahnya pucat dan nafasnya terengah-engah akibat terlalu banyak menguras
+      energi sihir untuk menyembuhkan warga.
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
   hasChoices: 0
   choices: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: e169d62c1df9f2e469c64b993ef8e137, type: 2}
+  actionID: 
+  isCutscene: 1

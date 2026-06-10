@@ -16,7 +16,7 @@ public struct DialogueLine
     [Tooltip("Nama karakter yang sedang berbicara (misal: Lara).")]
     public string speakerName;
     
-    [Tooltip("ID karakter (misal: REN, LARA, MARCO, LUCIA).")]
+    [Tooltip("ID karakter (misal: REN, LARA, MARCO, LUCIA, NARASI).")]
     public string speakerID;
 
     [Tooltip("Opsional: Sprite portrait kustom untuk baris ini (untuk ekspresi wajah berbeda). Jika kosong, menggunakan sprite default.")]
@@ -25,6 +25,19 @@ public struct DialogueLine
     [TextArea(3, 5)]
     [Tooltip("Baris dialog.")]
     public string text;
+
+    [Header("Visual Novel Cutscene Settings")]
+    [Tooltip("Opsional: Background kustom untuk baris dialog ini.")]
+    public Sprite customBackground;
+
+    [Tooltip("Opsional: Animasi visual kustom (misal: shake, jump, flash).")]
+    public string animationTrigger;
+
+    [Tooltip("Opsional: Posisi karakter pembicara (L = Kiri, C = Tengah, R = Kanan, None = Sembunyikan).")]
+    public string characterPosition;
+
+    [Tooltip("Indeks emosi karakter (0 = Default/Normal, 1 = Emosi 2, 2 = Emosi 3, dst.).")]
+    public int emotionIndex;
 }
 
 [CreateAssetMenu(fileName = "NewDialogueNode", menuName = "Dialog System/Dialogue Node")]
@@ -56,5 +69,12 @@ public class DialogueData : ScriptableObject
     [Header("Transisi Linear")]
     [Tooltip("Node dialog berikutnya jika tidak ada pilihan percabangan.")]
     public DialogueData nextDialogue;
+
+    [Header("Custom Event Trigger")]
+    [Tooltip("ID event unik untuk memicu efek gameplay ketika dialog ini diputar/selesai.")]
+    public string actionID;
+
+    [Tooltip("Centang jika dialog ini adalah cutscene cerita (akan menampilkan background hitam default daripada tembus pandang ke kamar).")]
+    public bool isCutscene;
 }
 

@@ -18,20 +18,45 @@ MonoBehaviour:
   lines:
   - speakerName: Ren
     speakerID: REN
-    text: 5 tahun setelah aku meninggalkan desa, aku tidak pernah mengira bahwa ambisiku
-      menjadi master sihir justru membuatku terlambat melindungi mereka. Morgendorf...
-      panti asuhan kami... Apakah Lara dan Marco baik-baik saja? Aku tidak boleh
-      membuang waktu lagi. Jika takdir ingin merebut rumahku, maka aku akan merebutnya
-      kembali dengan tanganku sendiri!
+    customPortrait: {fileID: 0}
+    text: '5 tahun setelah aku meninggalkan desa, aku tidak pernah mengira bahwa
+      ambisiku menjadi master sihir justru membuatku terlambat melindungi mereka.
+      Morgendorf... panti asuhan kami... '
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Apakah Lara dan Marco baik-baik saja? Aku tidak boleh membuang waktu lagi.
+      Jika takdir ingin merebut rumahku, maka aku akan merebutnya kembali dengan
+      tanganku sendiri!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Narasi
     speakerID: NARASI
-    text: '*Setiba nya di desa
-
-
-      Aroma hangus dan kepulan asap hitam menyambut
-      Ren di Morgendorf. Desa yang dulunya damai kini hancur total oleh sisa-sisa
-      sihir hitam pasukan Raja Iblis. Mengabaikan rasa lelahnya, Ren berlari sekencang
-      mungkin menembus puing-puing menuju panti asuhan tempat Lara dan Marco berada'
+    customPortrait: {fileID: 0}
+    text: 'Aroma hangus dan kepulan asap hitam menyambut Ren di Morgendorf. Desa
+      yang dulunya damai kini hancur total oleh sisa-sisa sihir hitam pasukan Raja
+      Iblis. '
+    customBackground: {fileID: 0}
+    animationTrigger: flash
+    characterPosition: 
+    emotionIndex: 0
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Mengabaikan rasa lelahnya, Ren berlari sekencang mungkin menembus puing-puing
+      menuju panti asuhan tempat Lara dan Marco berada
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: 
+    emotionIndex: 0
   hasChoices: 0
   choices: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: {fileID: 11400000, guid: 32d7d7b7ad178474b9337d2caa4f9f87, type: 2}
+  actionID: 
+  isCutscene: 1

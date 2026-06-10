@@ -18,61 +18,147 @@ MonoBehaviour:
   lines:
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: Bagaimana, Lucia? Apa dia baik-baik saja?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
+    customPortrait: {fileID: 21300000, guid: 1972a21a0da198243b0bdb4f5e4242ff, type: 3}
     text: Ini buruk, Ren. Dia pingsan bukan hanya karena kelelahan, tapi karena tubuhnya
       terkena kutukan dari sihir para iblis.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
+    customPortrait: {fileID: 0}
     text: Kutukan?! Bagaimana bisa?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
+    customPortrait: {fileID: 21300000, guid: 0c6705895d0e19d4e874b7dd130f3cd7, type: 3}
     text: Karena dia terlalu banyak mengobati warga desa yang terluka akibat senjata
       atau sihir monster. Tanpa disadari, residu mana iblis dari luka-luka warga
-      itu masuk dan mengontaminasi sirkulasi sihirnya sendiri saat dia merapalkan
-      mantra penyembuh. Kutukan ini perlahan menggerogoti sirkuit mananya.
+      itu masuk dan mengontaminasi Lara.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: Lalu apa ada obatnya? Sihir pemurnian mu tidak bisa menghapusnya?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
+    customPortrait: {fileID: 21300000, guid: 1972a21a0da198243b0bdb4f5e4242ff, type: 3}
     text: Sihirku hanya bisa menahan penyebarannya untuk sementara waktu. Untuk menyembuhkannya
       secara total, kita butuh obat khusus. Dan sayangnya, satu-satunya bahan utama
       untuk obat itu hanya tumbuh di tempat asalnya Demon Continent.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
+    customPortrait: {fileID: 0}
     text: Benua Iblis... wilayah paling berbahaya yang dikuasai penuh oleh pasukan
       Raja Iblis.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: Kalau begitu aku tau apa yang harus ku lakukan. Aku akan pergi ke Benua
       Iblis sekarang juga, sendirian! Aku yang akan bawa obat itu kembali!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
+    customPortrait: {fileID: 0}
     text: Hei, tunggu dulu! Jangan main-main, Ren! Kau tidak bisa pergi sendirian
       ke tempat menyeramkan seperti itu. Ajak aku dan kita bisa melawan mereka bersama!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: Marco, ini bukan perjalanan biasa. Ini Benua Iblis! Tempat itu sangat berbahaya,
       nyawamu bisa terancam!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Marco
     speakerID: MARCO
+    customPortrait: {fileID: 0}
     text: Aku tidak masalah dengan hal itu, Ren. Lagipula, menghadapi bahaya dan
       melindungi orang lain adalah tujuan utamaku menjadi seorang Ksatria. Aku tidak
       akan membiarkan sahabatku pergi sendirian ke sarang musuh.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: R
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
+    customPortrait: {fileID: 21300000, guid: cb9c17b47d29f594ebc9fbc2b5cb8e6b, type: 3}
     text: Dan jangan lupakan aku! Aku juga harus ikut!
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: L
+    emotionIndex: 0
   - speakerName: Ren
     speakerID: REN
+    customPortrait: {fileID: 0}
     text: "T-tapi\u2026 Lucia\u2026"
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: C
+    emotionIndex: 0
   - speakerName: Lucia
     speakerID: LUCIA
-    text: Tidak ada tapi-tapi! Aku tidak akan pernah membiarkan sahabatku di akademi
-      pergi ke tempat berbahaya seperti itu sendirian untuk mati konyol. Lagipula,
-      kalian berdua butuh penyihir jenius sepertiku untuk mendeteksi sihir iblis
-      di sana, kan?
+    customPortrait: {fileID: 21300000, guid: 86a2e0fe141d68240bee9d21a671615a, type: 3}
+    text: 'Tidak ada tapi-tapi! Aku tidak akan pernah membiarkan sahabatku di akademi
+      pergi ke tempat berbahaya seperti itu sendirian untuk mati konyol. '
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Lucia
+    speakerID: LUCIA
+    customPortrait: {fileID: 21300000, guid: 1972a21a0da198243b0bdb4f5e4242ff, type: 3}
+    text: Lagipula, kalian berdua butuh penyihir jenius sepertiku untuk mendeteksi
+      sihir iblis di sana, kan?
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Kau benar. Baiklah, mari kita laksanakan secepat mungkin.
+    customBackground: {fileID: 21300000, guid: ee4c84f8c4445c443861bbf407ad007b, type: 3}
+    animationTrigger: jump
+    characterPosition: R
+    emotionIndex: 0
   hasChoices: 0
   choices: []
   nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 1

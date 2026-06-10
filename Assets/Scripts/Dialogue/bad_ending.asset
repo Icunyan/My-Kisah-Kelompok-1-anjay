@@ -12,13 +12,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
   m_Name: bad_ending
   m_EditorClassIdentifier: 
-  characterName: SYSTEM
+  characterName: 
   characterID: 
-  dialogueLines:
-  - 'Tewas lek
-
-'
-  lines: []
+  dialogueLines: []
+  lines:
+  - speakerName: Ren
+    speakerID: 
+    customPortrait: {fileID: 0}
+    text: " Lara? Aku ke sini untuk\u2014"
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: Lara terbaring diam. Tubuhnya pucat, sedingin batu. Aura sihir gelap berpendar
+      redup di sekujur kulitnya. Kutukan iblis itu telah menyelesaikan pekerjaannya.
+    customBackground: {fileID: 21300000, guid: 229c2ed9b4a77c942a2d9738ebb1e023, type: 3}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: 
+    customPortrait: {fileID: 0}
+    text: "Lara... tidak. Tidak, tidak, tidak\u2014 Kumohon, jangan..."
+    customBackground: {fileID: 21300000, guid: 229c2ed9b4a77c942a2d9738ebb1e023, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: 
+    customPortrait: {fileID: 0}
+    text: Maafkan aku, Lara. Aku harusnya lebih sering ke sini. Aku harusnya tidak
+      membiarkanmu sendirian... Ini semua salahku.
+    customBackground: {fileID: 21300000, guid: 229c2ed9b4a77c942a2d9738ebb1e023, type: 3}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: "Ia terlalu sibuk mengejar kekuatan \u2014 dan lupa bahwa alasan ia berjuang
+      sudah tidak ada lagi."
+    customBackground: {fileID: 21300000, guid: 229c2ed9b4a77c942a2d9738ebb1e023, type: 3}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: SYSTEM
+    customPortrait: {fileID: 0}
+    text: . . .
+    customBackground: {fileID: 21300000, guid: 2fa42e24252ad2e4fb8aef11c291ebb0, type: 3}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: 
+    speakerID: SYSTEM
+    customPortrait: {fileID: 0}
+    text: BAD END
+    customBackground: {fileID: 21300000, guid: 2fa42e24252ad2e4fb8aef11c291ebb0, type: 3}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
   hasChoices: 0
   choices: []
   nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 1

@@ -168,7 +168,7 @@ public class SaveLoadUI : MonoBehaviour
                     SaveData data = SaveLoadManager.Instance.GetSaveData(slotNum);
                     string phaseName = ((CyclePhase)data.cyclePhase).ToString();
                     slotInfoTexts[i].text = $"Slot {slotNum}  |  Hari {data.day} - {phaseName}\n" +
-                                            $"HP:{data.hp}  ATK:{data.atk}  DEF:{data.def}\n" +
+                                            $"Riset: {data.researchProgress} / {data.maxResearchLevel}\n" +
                                             $"Disimpan: {data.saveDateTime}";
                 }
                 else

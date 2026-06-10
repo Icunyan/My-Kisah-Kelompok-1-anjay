@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453557b4d2017fc45acd9fc4662e9ee1, type: 3}
+  m_Name: level_15_milestone
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterID: 
+  dialogueLines: []
+  lines:
+  - speakerName: Narasi
+    speakerID: NARASI
+    customPortrait: {fileID: 0}
+    text: 'Berkat penelitian tanpa lelah dari Ren, struktur sihir kutukan yang mengikat
+      jiwa Lara akhirnya mulai terpetakan. Namun, setitik harapan itu datang dengan
+      kabar buruk: bahan utama penawarnya hanya tumbuh di kegelapan Benua Iblis.'
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: None
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Aku tidak peduli seberapa jauh atau berbahaya Benua Iblis itu. Jiwa Lara
+      semakin merapuh setiap harinya, dan aku tidak akan tinggal diam melihatnya
+      perlahan menghilang!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: C
+    emotionIndex: 0
+  - speakerName: Marco
+    speakerID: MARCO
+    customPortrait: {fileID: 0}
+    text: Benua Iblis bukanlah tempat rekreasi, Ren. Tapi Lara adalah sahabat kita.
+      Pedang dan perisai besarku ini ada untuk melindungi kalian. Kita berangkat
+      bersama!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: R
+    emotionIndex: 0
+  - speakerName: Lucia
+    speakerID: LUCIA
+    customPortrait: {fileID: 0}
+    text: Sihir suci tingkat tinggi dari akademi akan sangat berguna untuk menahan
+      racun mana di sana. Jangan berani-berani meninggalkan aku, Ren. Kita adalah
+      satu tim!
+    customBackground: {fileID: 0}
+    animationTrigger: 
+    characterPosition: L
+    emotionIndex: 0
+  - speakerName: Ren
+    speakerID: REN
+    customPortrait: {fileID: 0}
+    text: Teman-teman... terima kasih. Aku bersumpah kita akan membawa pulang obat
+      penawar itu, apa pun taruhannya!
+    customBackground: {fileID: 0}
+    animationTrigger: jump
+    characterPosition: C
+    emotionIndex: 0
+  hasChoices: 0
+  choices: []
+  nextDialogue: {fileID: 0}
+  actionID: 
+  isCutscene: 1

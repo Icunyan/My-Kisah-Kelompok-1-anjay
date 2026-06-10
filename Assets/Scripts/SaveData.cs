@@ -5,10 +5,12 @@
 [System.Serializable]
 public class SaveData
 {
-    // --- Statistik Player ---
-    public int hp;
-    public int atk;
-    public int def;
+    // --- Statistik Player / Progress Penelitian ---
+    public int researchProgress;
+    public int maxResearchLevel;
+    public bool isLaraWatchedByFriend;
+    public int laraWardDaysRemaining;
+    public bool isResearchBuffed;
 
     // --- Manajemen Hari & Energi ---
     public int day;
