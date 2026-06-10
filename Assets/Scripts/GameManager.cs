@@ -125,21 +125,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[DEBUG HUD] saveButton is null: {saveButton == null}");
-        if (saveButton != null)
-        {
-            Debug.Log($"[DEBUG HUD] saveButton path: {GetHierarchyPath(saveButton.transform)}");
-            Debug.Log($"[DEBUG HUD] saveButton activeSelf: {saveButton.gameObject.activeSelf}, activeInHierarchy: {saveButton.gameObject.activeInHierarchy}");
-        }
-        if (loadButton != null)
-        {
-            Debug.Log($"[DEBUG HUD] loadButton path: {GetHierarchyPath(loadButton.transform)}");
-        }
-        if (mainMenuButton != null)
-        {
-            Debug.Log($"[DEBUG HUD] mainMenuButton path: {GetHierarchyPath(mainMenuButton.transform)}");
-        }
-
         // Hubungkan tombol-tombol dengan fungsinya di kode
         if (trainButton != null) trainButton.onClick.AddListener(ResearchCurse);
         if (visitLaraButton != null) visitLaraButton.onClick.AddListener(VisitLara);
@@ -176,31 +161,33 @@ public class GameManager : MonoBehaviour
 
             if (hudContainer != null)
             {
-                RectTransform rt = hudContainer.GetComponent<RectTransform>();
-                Debug.Log($"[DEBUG CONTAINER] Parent: {hudContainer.parent.name}, activeSelf: {hudContainer.gameObject.activeSelf}, activeInHierarchy: {hudContainer.gameObject.activeInHierarchy}");
-                Debug.Log($"[DEBUG CONTAINER] pos: {rt.anchoredPosition}, size: {rt.sizeDelta}, anchors: {rt.anchorMin} to {rt.anchorMax}, pivot: {rt.pivot}");
-
-                if (hudContainer.parent != canvasObj.transform)
+                hudContainer.SetParent(canvasObj.transform, false);
+                hudContainer.gameObject.SetActive(true);
+                
+                Transform dialoguePanelT = canvasObj.transform.Find("Panel Dialogue");
+                if (dialoguePanelT != null)
                 {
-                    hudContainer.SetParent(canvasObj.transform, false);
-                    hudContainer.gameObject.SetActive(true);
-                    
-                    Transform dialoguePanelT = canvasObj.transform.Find("Panel Dialogue");
-                    if (dialoguePanelT != null)
-                    {
-                        hudContainer.SetSiblingIndex(dialoguePanelT.GetSiblingIndex());
-                    }
-                    else
-                    {
-                        hudContainer.SetAsLastSibling();
-                    }
+                    hudContainer.SetSiblingIndex(dialoguePanelT.GetSiblingIndex());
+                }
+                else
+                {
+                    hudContainer.SetAsLastSibling();
                 }
             }
-            else if (saveButton != null && saveButton.transform.parent != canvasObj.transform)
+            else if (saveButton != null)
             {
                 saveButton.transform.SetParent(canvasObj.transform, false);
-                if (loadButton != null) loadButton.transform.SetParent(canvasObj.transform, false);
-                if (mainMenuButton != null) mainMenuButton.transform.SetParent(canvasObj.transform, false);
+                saveButton.gameObject.SetActive(true);
+                if (loadButton != null)
+                {
+                    loadButton.transform.SetParent(canvasObj.transform, false);
+                    loadButton.gameObject.SetActive(true);
+                }
+                if (mainMenuButton != null)
+                {
+                    mainMenuButton.transform.SetParent(canvasObj.transform, false);
+                    mainMenuButton.gameObject.SetActive(true);
+                }
             }
         }
 
@@ -664,16 +651,5 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateUI();
-    }
-
-    private string GetHierarchyPath(Transform t)
-    {
-        string path = t.name;
-        while (t.parent != null)
-        {
-            t = t.parent;
-            path = t.name + "/" + path;
-        }
-        return path;
     }
 }
