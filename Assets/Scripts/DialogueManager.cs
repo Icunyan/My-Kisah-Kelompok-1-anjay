@@ -481,8 +481,9 @@ public class DialogueManager : MonoBehaviour
         // Panggil callback agar GameManager tahu dialog sudah selesai
         if (onDialogueEndCallback != null)
         {
-            onDialogueEndCallback.Invoke();
+            System.Action callback = onDialogueEndCallback;
             onDialogueEndCallback = null;
+            callback.Invoke();
         }
     }
 
