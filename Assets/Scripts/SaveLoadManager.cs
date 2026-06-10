@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Singleton Manager untuk menangani Save dan Load permainan.
@@ -125,6 +126,22 @@ public class SaveLoadManager : MonoBehaviour
 
         Debug.Log($"SaveLoadManager: Game berhasil dimuat dari Slot {slotIndex}.");
         return true;
+    }
+
+    /// <summary>
+    /// Memulai proses memuat game setelah scene selesai dimuat (menunggu 1 frame).
+    /// </summary>
+    public void LoadGameAfterSceneLoad(int slotIndex)
+    {
+        isLoadedGame = true;
+        StartCoroutine(LoadAfterFrameCoroutine(slotIndex));
+    }
+
+    private IEnumerator LoadAfterFrameCoroutine(int slotIndex)
+    {
+        yield return null; // Tunggu 1 frame agar GameManager.Start() selesai
+        LoadGame(slotIndex);
+        Debug.Log($"SaveLoadManager: Berhasil memuat save Slot {slotIndex} setelah scene dimuat.");
     }
 
     // =========================================================================

@@ -148,19 +148,7 @@ public class MainMenuManager : MonoBehaviour
 
         if (pendingLoadSlot > 0 && SaveLoadManager.Instance != null)
         {
-            // Tunda 1 frame agar GameManager.Start() selesai dulu
-            StartCoroutine(LoadAfterFrame());
-        }
-    }
-
-    private System.Collections.IEnumerator LoadAfterFrame()
-    {
-        yield return null; // Tunggu 1 frame
-
-        if (SaveLoadManager.Instance != null && pendingLoadSlot > 0)
-        {
-            SaveLoadManager.Instance.LoadGame(pendingLoadSlot);
-            Debug.Log($"MainMenuManager: Berhasil memuat save Slot {pendingLoadSlot} setelah scene dimuat.");
+            SaveLoadManager.Instance.LoadGameAfterSceneLoad(pendingLoadSlot);
             pendingLoadSlot = -1;
         }
     }
