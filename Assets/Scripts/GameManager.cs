@@ -125,6 +125,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"[DEBUG HUD] saveButton is null: {saveButton == null}");
+        if (saveButton != null)
+        {
+            Debug.Log($"[DEBUG HUD] saveButton path: {GetHierarchyPath(saveButton.transform)}");
+            Debug.Log($"[DEBUG HUD] saveButton activeSelf: {saveButton.gameObject.activeSelf}, activeInHierarchy: {saveButton.gameObject.activeInHierarchy}");
+        }
+        if (loadButton != null)
+        {
+            Debug.Log($"[DEBUG HUD] loadButton path: {GetHierarchyPath(loadButton.transform)}");
+        }
+        if (mainMenuButton != null)
+        {
+            Debug.Log($"[DEBUG HUD] mainMenuButton path: {GetHierarchyPath(mainMenuButton.transform)}");
+        }
+
         // Hubungkan tombol-tombol dengan fungsinya di kode
         if (trainButton != null) trainButton.onClick.AddListener(ResearchCurse);
         if (visitLaraButton != null) visitLaraButton.onClick.AddListener(VisitLara);
@@ -639,5 +654,16 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateUI();
+    }
+
+    private string GetHierarchyPath(Transform t)
+    {
+        string path = t.name;
+        while (t.parent != null)
+        {
+            t = t.parent;
+            path = t.name + "/" + path;
+        }
+        return path;
     }
 }
